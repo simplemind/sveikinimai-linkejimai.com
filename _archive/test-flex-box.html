@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test doc</title>
+  <style>
+    header {
+      background-color: burlywood;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+    }
+
+    main {
+      background-color: blueviolet;
+      flex-grow: 1;
+    }
+
+    nav {
+      order: -1;
+      width: clamp(100px, 150px, 200px);
+      background-image: url(./public/assets/side-menu-rectangle.svg);
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    nav>ul {
+      /* background-image: url(./public/assets/side-menu-rectangle.svg);
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: top center; */
+    }
+
+    footer {
+      background-color: crimson;
+    }
+  </style>
+</head>
+<body>
+  <header>Header</header>
+  <section class="container">
+    <main>Main</main>
+    <nav>
+      <h3>Sveikinimų progos</h3>
+      <ul class="side-menu__list">
+        <li>Gimtadienio</li>
+        <li>Jubiliejaus</li>
+        <li>Romantiški</li>
+        <li>Draugams</li>
+        <li>Vestuviniai</li>
+        <li>Naujagimio</li>
+        <li>Krikštynų</li>
+        <li>Mokykliniai</li>
+        <li>Velykiniai</li>
+        <li>Vardadienio</li>
+        <li>Moters dienai</li>
+        <li>Motinos dienai</li>
+        <li>Tėvo dienai</li>
+        <li>Naujametiniai</li>
+        <li>Kalėdiniai</li>
+        <li>Kūčių</li>
+        <li>Mokykliniai</li>
+        <li>Velykiniai</li>
+        <li>Vardadienio</li>
+        <li>Moters dienai</li>
+        <li>Motinos dienai</li>
+        <li>Tėvo dienai</li>
+        <li>Naujametiniai</li>
+        <li>Kalėdiniai</li>
+        <li>Kūčių</li>
+      </ul>
+
+    </nav>
+  </section>
+  <footer>Footer</footer>
+</body>
+</html>
