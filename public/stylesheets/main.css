@@ -178,11 +178,12 @@ body {
 
 .main {
   display: grid;
-  grid-template-columns: 284px 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
   max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 30px;
+  /* 0 at 360vs and 50px at 800vw */
+  margin: calc(11.36vw + -40.91px) auto 0;
+  padding: 0 20px;
 }
 
 .headings {
@@ -201,6 +202,7 @@ body {
 
 .headings__subheading {
   padding: 20px;
+  margin-bottom: 20px;
   background-image: url(../assets/subheading-bg-small.svg);
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -275,7 +277,7 @@ body {
 
   display: grid;
   /* Two columns once width is above 800px */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
 
@@ -333,11 +335,10 @@ body {
 
 /* ####### 4. Footer ####### */
 .footer {
-  /* Positioning the footer at the bottom */
-  /* position: absolute;
-  bottom: 0; */
   width: 100%;
   height: 7.2rem;
+  padding: 0 40px;
+  margin-top: 50px;
   /* Styling */
   line-height: 150%;
   font-size: 1.1rem;
@@ -345,9 +346,12 @@ body {
 }
 
 .footer__container {
-  max-width: 1000px;
+  /* #ToDo: not working. Needs fixing */
   margin: 0 auto;
-  padding-left: 20px;
+  max-width: 1000px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
 }
 
 /* ####### 5. Animations ####### */
@@ -357,8 +361,19 @@ body {
     left: 30px;
   }
 
+  .main {
+    grid-template-columns: 284px 1fr;
+    grid-template-rows: auto 1fr;
+    padding: 0 20px;
+    margin: 0 auto;
+  }
+
   .headings {
     margin-left: calc(284px + 23px);
+  }
+
+  .headings__subheading {
+    margin-bottom: 10px;
   }
 
   .side-menu {
@@ -368,6 +383,11 @@ body {
   .content {
     margin: 10px 0 0 23px;
   }
+
+  .footer {
+    padding: 0 30px;
+  }
+
 }
 
 @media (min-width: 1280px) {
