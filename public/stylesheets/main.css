@@ -155,8 +155,7 @@ body {
   position: absolute;
   /* 10px at 360vw and 44px at 1280vw or more */
   top: calc(3.70vw + -3.30px);
-  /* 20px at 360vw and 30px at 800vw or more */
-  left: calc(2.27vw + 11.82px);
+  left: 20px;
   background-image: url(../assets/logo-small.svg);
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -170,8 +169,12 @@ body {
   align-items: center;
   font-size: clamp(1.8rem, calc(4.09vw + 3.27px), 3.6rem);
   line-height: clamp(1.8rem, calc(4.09vw + 3.27px), 3.6rem);
-  color: var(--neutral-color);
   font-weight: 300;
+}
+
+.logo__link {
+  text-decoration: none;
+  color: var(--neutral-color);
 }
 
 /* ####### 3. Main ####### */
@@ -259,10 +262,31 @@ body {
   color: var(--neutral-very-dark-color);
   font-size: 1.8rem;
   line-height: 130%;
+  transition: color 0.05s ease-in-out;
 }
 
 .side-menu__link:hover {
   color: var(--neutral-color-white);
+}
+
+.menu-open-button {
+  background-image: url(../assets/menu-open-button.svg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  bottom: 30px;
+  right: 30px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.menu-open-button:hover {
+  animation: rotateAndBack 0.4s ease-out;
+}
+
+.menu-open-button:active {
+  transform: scale(0.9);
 }
 
 .content {
@@ -319,6 +343,15 @@ body {
 .greeting__icon {
   height: 40px;
   width: 40px;
+  transition: transform 0.1s ease-in-out;
+}
+
+.greeting__icon:hover {
+  animation: rotateAndBack 0.4s ease-out;
+}
+
+.greeting__icon:active {
+  transform: scale(0.9);
 }
 
 .greeting__like-icon {
@@ -337,7 +370,6 @@ body {
 .footer {
   width: 100%;
   height: 7.2rem;
-  padding: 0 40px;
   margin-top: 50px;
   /* Styling */
   line-height: 150%;
@@ -349,16 +381,45 @@ body {
   /* #ToDo: not working. Needs fixing */
   margin: 0 auto;
   max-width: 1000px;
+  padding: 0 40px;
   display: flex;
   justify-content: start;
   align-items: center;
 }
 
+
 /* ####### 5. Animations ####### */
+@keyframes rotateAndBack {
+
+  /* define animation */
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(-10deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
 /* ####### 6. Media queries ####### */
+@media (min-width: 600px) {
+
+  .menu-open-button {
+    width: 60px;
+    height: 60px;
+  }
+
+}
+
 @media (min-width: 800px) {
+
   .logo {
-    left: 30px;
+    left: 50px;
+    top: 25px;
   }
 
   .main {
@@ -384,8 +445,12 @@ body {
     margin: 10px 0 0 23px;
   }
 
+  .menu-open-button {
+    display: none;
+  }
+
   .footer {
-    padding: 0 30px;
+    /* padding: 0 30px; */
   }
 
 }
