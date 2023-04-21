@@ -150,7 +150,8 @@ body {
 }
 
 .logo {
-  height: clamp(72px, calc(15.45vw + 16.36px), 140px);
+  /* 72px height at 360vw to 120px at 800px. Then media query locks at 120px */
+  height: clamp(72px, calc(10.91vw + 32.73px), 140px);
   max-width: 270px;
   position: absolute;
   /* 10px at 360vw and 44px at 1280vw or more */
@@ -167,7 +168,8 @@ body {
   height: 100%;
   display: flex;
   align-items: center;
-  font-size: clamp(1.8rem, calc(4.09vw + 3.27px), 3.6rem);
+  /* 18px at 360vw to 36px at 800vw */
+  font-size: clamp(1.8rem, calc(2.73vw + 8.18px), 3.6rem);
   line-height: clamp(1.8rem, calc(4.09vw + 3.27px), 3.6rem);
   font-weight: 300;
 }
@@ -219,14 +221,7 @@ body {
   grid-row: 2 / 3;
   grid-column: 1 / 2;
   min-height: 550px;
-
-  /* min-width: 284px; */
-  /* flex-basis: 284px; */
-  /* flex-basis: 284px; */
-  min-height: 550px;
   position: relative;
-  /* margin-right: 20px; */
-  /* #ToDo: Add a fade away or smth else to fix not working links when menu under the logo */
 }
 
 /* A dark square above the menu */
@@ -289,6 +284,96 @@ body {
   transform: scale(0.9);
 }
 
+/* Modal menu */
+/* Credit: https://www.w3schools.com/howto/howto_css_modals.asp */
+/* The Modal (background) */
+.modal {
+  /* # display: none; */
+  position: fixed;
+  /* Sit on top */
+  z-index: 1;
+  /* Location of the box */
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  /* Enable scroll if needed */
+  overflow: auto;
+  /* Fallback color */
+  background-color: rgb(0, 0, 0);
+  /* Black with opacity */
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Modal Content */
+.modal-menu {
+  position: absolute;
+  width: 230px;
+  min-height: 500px;
+  float: right;
+  right: -300px;
+  bottom: 10px;
+}
+
+.modal-menu__heading {
+  width: 200px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  /* This is a shorthand of translateX(-50%) and translateY(-50%) */
+  transform: translate(-50%, 0%) rotate(-4deg);
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #FFF;
+  font-size: 2.2rem;
+  height: 40px;
+  text-align: center;
+  box-shadow: var(--shadow-neutral-dark);
+}
+
+.modal-menu__list {
+  background-image: url(../assets/side-menu-rectangle.svg);
+  background-position: center 10px;
+  background-size: 100% 98%;
+  background-repeat: no-repeat;
+  list-style-type: none;
+  padding: 60px 10px 55px 60px;
+  margin-bottom: 10px;
+}
+
+.modal-menu__list-item {
+  line-height: 130%;
+}
+
+.modal-menu__link {
+  text-decoration: none;
+  font-family: var(--main-font);
+  color: var(--neutral-very-dark-color);
+  font-size: 1.8rem;
+  transition: color 0.05s ease-in-out;
+}
+
+.modal-menu__link:hover {
+  color: var(--neutral-color-white);
+}
+
+.modal-menu__close-button {
+  float: right;
+}
+
+.modal-menu__close-button:hover {
+  animation: rotateAndBack 0.4s ease-out;
+}
+
+.modal-menu__close-button:active {
+  transform: scale(0.9);
+}
+
+.modal-menu__button-image {
+  height: 40px;
+}
+
+/* Content */
 .content {
   /* width: 6%; */
   flex-basis: 100px;
@@ -397,7 +482,7 @@ body {
   }
 
   50% {
-    transform: rotate(-10deg);
+    transform: rotate(-7deg);
   }
 
   100% {
@@ -408,18 +493,27 @@ body {
 /* ####### 6. Media queries ####### */
 @media (min-width: 600px) {
 
+  /* Increasing button size on tablets from 40px to 60px */
   .menu-open-button {
     width: 60px;
     height: 60px;
   }
 
+  /* Adding space in the menu for larger button */
+  .modal-menu__list {
+    padding-bottom: 76px;
+  }
+
+  .modal-menu__button-image {
+    height: 60px;
+  }
 }
 
 @media (min-width: 800px) {
 
   .logo {
     left: 50px;
-    top: 25px;
+    top: 44px;
   }
 
   .main {
@@ -449,16 +543,8 @@ body {
     display: none;
   }
 
-  .footer {
-    /* padding: 0 30px; */
-  }
-
 }
 
-@media (min-width: 1280px) {
-  .logo {
-    top: 44px;
-  }
-}
+@media (min-width: 1280px) {}
 
 /* Move logo to the left edge of the container at 800px+ */
