@@ -37,7 +37,7 @@
   <!-- <button id="myBtn" class="button">Open Modal</button> -->
 
   <!-- The Modal -->
-  <section id="myModal" class="modal">
+  <section class="modal-overlay">
     <nav class="modal-menu">
       <h3 class="modal-menu__heading">sveikinimų progos</h3>
       <ul class="modal-menu__list">
@@ -248,7 +248,7 @@
         <li><a class="side-menu__link" href="#">Kūčių</a></li>
       </ul>
     </nav>
-    <section id="open-modal-menu" class="menu-open-button"></section>
+    <section class="menu-open-button"></section>
   </main>
   <footer class="footer">
     <section class="footer__container">Webmaster karolis<br>Visos teisės saugomos &copy; 2023</section>
@@ -258,29 +258,26 @@
 
 
 <script>
-  // Get the modal
-  var modal=document.getElementById("myModal");
+  const modalOverlay=document.querySelector('.modal-overlay');
+  const modalMenu=document.querySelector('.modal-menu');
 
-  // Get the button that opens the modal
-  var btn=document.getElementById("open-modal-menu");
+  const openMenuButton=document.querySelector('.menu-open-button');
 
-  // Get the <span> element that closes the modal
-  var span=document.getElementsByClassName("modal-menu__close-button")[0];
+  const closeMenuButton=document.querySelector('.modal-menu__close-button');
 
-  // When the user clicks the button, open the modal 
-  btn.onclick=function () {
-    modal.style.display="block";
-  }
+  openMenuButton.addEventListener('click', () => {
+    modalOverlay.classList.add('modal-overlay__open');
+    modalMenu.classList.add('modal-menu__open');
+  });
 
-  // When the user clicks on <span> (x), close the modal
-  span.onclick=function () {
-    modal.style.display="none";
-  }
+  closeMenuButton.addEventListener('click', () => {
+    modalOverlay.classList.remove('modal-overlay__open');
+    modalMenu.classList.remove('modal-menu__open');
+  });
 
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick=function (event) {
-    if (event.target==modal) {
-      modal.style.display="none";
-    }
-  }
+  modalOverlay.addEventListener('click', () => {
+    modalOverlay.classList.remove('modal-overlay__open');
+    modalMenu.classList.remove('modal-menu__open');
+  });
+
 </script>
