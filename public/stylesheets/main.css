@@ -8,17 +8,16 @@ TABLE OF CONTENTS
   1.3. Declaring global rules
   2. Header
   3. Main
-  3.1 Heading container
-  3.2. Content container
-  3.4. Left menu
+  3.1. Headings container
+  3.2. Side menu (left)
+  3.3. Content container
+  3.3.1. Greetings container
+  3.3.2. Pagination container
   4. Footer
   5. Animations
   6. Media queries
 
 */
-
-
-
 
 
 /* ####### 1. Global styles ####### */
@@ -135,11 +134,16 @@ body {
 /* 250-277-314 */
 .header {
   height: 120px;
-  background: url("../assets/bg-top-wave.svg") no-repeat top center;
+  background-image: url("../assets/bg-top-wave.svg");
+  background-repeat: no-repeat;
+  background-position: top center;
   position: sticky;
   top: 0;
   /* In order for the menu to go under the logo and header wave */
   z-index: 1;
+  /* Style to prevent bg svg from cropping iteself below 290px. */
+  /*   strange behaviour I noticed on smaller resolutions. */
+  min-width: 290px;
 }
 
 /* A container for the logo to be in same width as main content */
@@ -206,11 +210,24 @@ body {
 }
 
 .headings__subheading {
-  padding: 20px;
+  /* padding: 20px;
   margin-bottom: 20px;
   background-image: url(../assets/subheading-bg-small.svg);
   background-size: 100% 100%;
   background-repeat: no-repeat;
+  color: var(--neutral-color-dark);
+  font-size: var(--text-regular);
+  line-height: 150%; */
+
+  background-image: url(../assets/subheading-bg-small.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 0;
+  /*reset*/
+  padding: 20px;
+  padding-bottom: clamp(90px, 20vw, 20%);
+  margin-bottom: 20px;
   color: var(--neutral-color-dark);
   font-size: var(--text-regular);
   line-height: 150%;
@@ -402,6 +419,10 @@ body {
   /* To set content on the right of the side-menu */
   order: 1;
 
+}
+
+/* ####### Greetings container ####### */
+.greetings-container {
   display: grid;
   /* Two columns once width is above 800px */
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -469,6 +490,41 @@ body {
   background-image: url(../assets/mail-icon.svg);
 }
 
+/* ####### Pagination container ####### */
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.add-greetings__button {
+  display: inline-block;
+  outline: 0;
+  border: 4px solid var(--primary-color);
+  cursor: pointer;
+  font-weight: 400;
+  color: var(--accent-color);
+  font-size: 2rem;
+  height: 6rem;
+  padding: 10px 24px;
+  border-radius: 50px;
+  background-color: #FFF;
+  box-shadow: 0px 2px 12px 0px rgba(101, 136, 147, 0.10);
+  transition: all .2s ease-out;
+}
+
+.add-greetings__button:hover {
+  box-shadow: 0px 8px 22px 0px rgba(101, 136, 147, 0.15), 0px 4px 6px 0px rgba(239, 127, 16, 0.15);
+  /* box-shadow: 0 8px 22px 0 rgb(37 44 97 / 15%), 0 4px 6px 0 rgb(93 100 148 / 20%); */
+
+}
+
+
+/* CSS */
+
+
 /* ####### 4. Footer ####### */
 .footer {
   width: 100%;
@@ -509,6 +565,7 @@ body {
 }
 
 /* ####### 6. Media queries ####### */
+/* Optimised for resolutions 360px, 600px, 800px and 1280px */
 @media (min-width: 600px) {
 
   /* Increasing button size on tablets from 40px to 60px */
