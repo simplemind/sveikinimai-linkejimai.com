@@ -343,9 +343,15 @@ body {
   right: -230px;
   bottom: 10px;
   transition: right 0.4s ease, visibility 0s linear 0.4s;
+  background-image: url(../assets/side-menu-rectangle.svg);
+  background-position: center 10px;
+  background-size: 100% 98%;
+  background-repeat: no-repeat;
+  padding: 0 0 0 6rem;
+  margin-bottom: 10px;
 }
 
-/* Makes menu visible. Toggled with JS */
+/* Makes menu visible. Toggled with modal-menu.js */
 .modal-menu__open {
   right: 20px;
   transition: right 0.4s ease;
@@ -367,13 +373,13 @@ body {
 }
 
 .modal-menu__list {
-  background-image: url(../assets/side-menu-rectangle.svg);
-  background-position: center 10px;
-  background-size: 100% 98%;
-  background-repeat: no-repeat;
+
+  /* background-size: contain; */
+  /* Reset with padding: 0; */
+  /* padding: 0;
+  height: 0; */
+  /* padding: 60px 10px 55px 60px; */
   list-style-type: none;
-  padding: 60px 10px 55px 60px;
-  margin-bottom: 10px;
 }
 
 .modal-menu__list-item {
