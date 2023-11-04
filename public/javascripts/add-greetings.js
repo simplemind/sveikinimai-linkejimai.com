@@ -1,23 +1,29 @@
 // Javascript code to add greetings to the page
-const contentContainer = document.querySelector(".content");
+const contentContainer = document.querySelector(".greetings-container");
 const footer = document.querySelector(".footer");
 
-const button = document.getElementById("add-greetings");
-button.addEventListener("click", () => {
+const addGreetingsButton = document.getElementById("add-greetings");
+
+// Adding event listener to the button while testing
+addGreetingsButton.addEventListener("click", () => {
   addGreetings(greetingsArray, contentContainer);
 });
 
 //Creating a new IntersectionObserver instance where content is visible 100%
 let options = {
-  root: null,
-  threshold: 1,
+  root: null, // it is the viewport
+  threshold: 0.8, // 100% visible
 };
 
 let callback = (entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       // console.log(entry);
-      addGreetings(greetingsArray, contentContainer);
+
+      //add a delay of 500ms
+      setTimeout(() => {
+        addGreetings(greetingsArray, contentContainer);
+      }, 500);
       // Disconnecting the observer, if not more content is available
       // observer.disconnect();
     }
