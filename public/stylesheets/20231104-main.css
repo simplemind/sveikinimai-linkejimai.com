@@ -4,11 +4,11 @@ TABLE OF CONTENTS
 
   1. Global styles
   1.1. Browser resets by Kevin Powell
-  1.2. Global variables
-  1.3. Global rules
+  1.2. Declaring global variables
+  1.3. Declaring global rules
   2. Header
   3. Main
-  3.1. Headings
+  3.1. Headings container
   3.2. Side menu (left)
   3.3. Content container
   3.3.1. Greetings container
@@ -16,15 +16,7 @@ TABLE OF CONTENTS
   4. Footer
   5. Animations
   6. Media queries
-*/
 
-/* Organizing CSS properties in logical groups:
-1.	Display stuff: flex, grid, etc.
-2.	Positioning stuff: position: absolute, z-index, top, right, etc.
-3.	Box Model stuff: height, width, padding, margin and even background.
-4.	Typography: line-height and font-size first as they affect box size. Then text-align: center, etc.
-5.	Manipulation stuff: transform, filter, opacity and other things modifying elements
-6.	Miscellaneous
 */
 
 
@@ -71,37 +63,35 @@ video {
   /* Dominant colors */
   --primary-color: rgba(29, 151, 226, 0.05);
   /* 1D97E2 with 5% alpha*/
-  --primary-gradient-left: linear-gradient(90deg,
-      rgba(29, 151, 226, 0.1) 0%,
-      rgba(29, 151, 226, 0) 100%);
-  --primary-gradient-right: linear-gradient(90deg,
-      rgba(29, 151, 226, 0) 0%,
-      rgba(29, 151, 226, 0.1) 100%);
+  --primary-gradient-left: linear-gradient(90deg, rgba(29, 151, 226, 0.1) 0%, rgba(29, 151, 226, 0) 100%);
+  --primary-gradient-right: linear-gradient(90deg, rgba(29, 151, 226, 0) 0%, rgba(29, 151, 226, 0.1) 100%);
+  ;
+
   /* Complimentary colors */
-  --secondary-color: #ef7f10;
+  --secondary-color: #EF7F10;
   --secondary-color-light: rgba(239, 127, 16, 0.2);
   --secondary-color-very-light: rgba(239, 127, 16, 0.1);
 
   /* Accent colors */
-  --accent-color: #1d97e2;
+  --accent-color: #1D97E2;
 
   /* Neutral colors */
-  --neutral-color: #57747d;
-  --neutral-color-dark: #384a50;
-  --neutral-color-very-dark: #131a1c;
-  --neutral-color-medium: #deecf0;
+  --neutral-color: #57747D;
+  --neutral-color-dark: #384A50;
+  --neutral-color-very-dark: #131A1C;
+  --neutral-color-medium: #DEECF0;
   --neutral-color-light: rgba(222, 236, 240, 0.5);
-  --neutral-color-white: #fff;
+  --neutral-color-white: #FFF;
 
   /* Semantic colors */
-  --semantic-color-success: #34b37e;
-  --semantic-color-warning: #ffab00;
-  --semantic-color-critical: #ff5530;
-  --semantic-color-information: #0164ff;
-  --semantic-color-help: #6454c0;
+  --semantic-color-success: #34B37E;
+  --semantic-color-warning: #FFAB00;
+  --semantic-color-critical: #FF5530;
+  --semantic-color-information: #0164FF;
+  --semantic-color-help: #6454C0;
 
   /* Text styles */
-  --main-font: "Baloo 2", cursive;
+  --main-font: 'Baloo 2', cursive;
   --text-regular: clamp(10px, calc(0.63vw + 7.75px), 1.4rem);
   /*  */
 
@@ -113,6 +103,7 @@ video {
   --shadow-orange-medium: 0px 2px 12px rgba(239, 127, 16, 0.15);
 }
 
+
 /* ####### 1.3. Declaring global rules ####### */
 html {
   /* 62.5% of 16px browser font size is 10px */
@@ -123,38 +114,36 @@ html {
 body {
   display: flex;
   flex-direction: column;
-
-  min-height: 100vh;
-  /* Gradients on the sides */
-  background: linear-gradient(90deg,
-      rgba(52, 152, 219, 0.1) 0,
-      rgba(52, 152, 219, 0) 28%,
-      rgba(52, 152, 219, 0) 72%,
-      rgba(52, 152, 219, 0.1) 100%),
-    #ffffff;
-
   /* 1.6 * 10px = 16px */
   font-size: 1.6rem;
   /* Main font and heading font */
   font-family: var(--main-font);
+  min-height: 100vh;
+  /* Gradients on the sides */
+  background:
+    linear-gradient(90deg,
+      rgba(52, 152, 219, 0.1) 0,
+      rgba(52, 152, 219, 0) 28%,
+      rgba(52, 152, 219, 0) 72%,
+      rgba(52, 152, 219, 0.1) 100%),
+    #FFFFFF;
 }
 
 
 /* ####### 2. Header ####### */
 /* 250-277-314 */
 .header {
+  height: 120px;
+  background-image: url("../assets/bg-top-wave.svg");
+  background-repeat: no-repeat;
+  background-position: top center;
   position: sticky;
   top: 0;
   /* In order for the menu to go under the logo and header wave */
   z-index: 1;
-
-  height: 120px;
-  /* Style to prevent bg svg from cropping itself below 290px. */
-  /*   strange behavior I noticed on smaller resolutions. */
-  /* min-width: 290px; */
-  background-image: url("../assets/bg-top-wave.svg");
-  background-repeat: no-repeat;
-  background-position: top center;
+  /* Style to prevent bg svg from cropping iteself below 290px. */
+  /*   strange behaviour I noticed on smaller resolutions. */
+  min-width: 290px;
 }
 
 /* A container for the logo to be in same width as main content */
@@ -170,7 +159,7 @@ body {
   max-width: 270px;
   position: absolute;
   /* 10px at 360vw and 44px at 1280vw or more */
-  top: calc(3.7vw + -3.3px);
+  top: calc(3.70vw + -3.30px);
   left: 20px;
   background-image: url(../assets/logo-small.svg);
   background-size: 100% 100%;
@@ -194,106 +183,97 @@ body {
   color: var(--neutral-color);
 }
 
-
 /* ####### 3. Main ####### */
+
 .main {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
-
   max-width: 1000px;
   /* 0 at 360vs and 50px at 800vw */
   margin: calc(11.36vw + -40.91px) auto 0;
   padding: 0 20px;
 }
 
-
-/* ####### 3.1. Headings ####### */
 .headings {
   /* background-color: #DEECF0; */
   min-height: 177px;
+
   grid-row: 1 / 2;
   grid-column: 1 / 3;
 }
 
 .headings__h1 {
-  padding-left: 20px;
   color: var(--neutral-color);
   font-size: 3.6rem;
-  line-height: 100%;
+  padding-left: 20px;
 }
 
 .headings__subheading {
   /* padding: 20px;
   margin-bottom: 20px;
   background-image: url(../assets/subheading-bg-small.svg);
-  
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   color: var(--neutral-color-dark);
   font-size: var(--text-regular);
   line-height: 150%; */
-  color: var(--neutral-color-dark);
-  font-size: var(--text-regular);
 
-  /* Box model stuff */
-  height: 0;
-  padding: 20px;
-  padding-bottom: clamp(90px, 20vw, 20%);
-  margin-bottom: 20px;
-  line-height: 140%;
   background-image: url(../assets/subheading-bg-small.svg);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
+  height: 0;
   /*reset*/
+  padding: 20px;
+  padding-bottom: clamp(90px, 20vw, 20%);
+  margin-bottom: 20px;
+  color: var(--neutral-color-dark);
+  font-size: var(--text-regular);
+  line-height: 150%;
 }
 
-/* ####### 3.2. Side menu (left) ####### */
 .side-menu {
   display: none;
   grid-row: 2 / 3;
   grid-column: 1 / 2;
-
+  min-height: 550px;
   position: relative;
-
-  height: max-content;
-  background-image: url(../assets/side-menu-rectangle.png);
-  background-position: center -10px;
-  /* 98% height to prevent trimmed BG image */
-  background-size: 115% 98%;
-  background-repeat: no-repeat;
 }
 
 /* A dark square above the menu */
 .side-menu__heading {
   width: 230px;
-  height: 45px;
+  position: absolute;
+  top: 0;
+  /* position the left edge of the element at the middle of the parent */
+  left: 50%;
+  /* This is a shorthand of translateX(-50%) and translateY(-50%) */
+  transform: translate(-50%, 0%) rotate(-4deg);
   background-color: rgba(0, 0, 0, 0.85);
-
-  color: #fff;
+  color: #FFF;
   font-size: 2.5rem;
+  height: 45px;
   text-align: center;
-
-  transform: translate(0%, 20%) rotate(-4deg);
-
   box-shadow: var(--shadow-neutral-dark);
 }
 
 .side-menu__list {
-  /* top padding for space from heading and bottom to extend BG image to cover full list */
-  padding: 3rem 0 10rem 0;
-  margin-bottom: 10px;
-
+  background-image: url(../assets/side-menu-rectangle.svg);
+  background-position: center 10px;
+  background-size: 100% 98%;
+  background-repeat: no-repeat;
   list-style-type: none;
+  padding: 65px 40px 40px 70px;
+  margin-bottom: 10px;
 }
 
 .side-menu__link {
-  font-size: 1.8rem;
-  line-height: 130%;
   text-decoration: none;
   font-family: var(--main-font);
   color: var(--neutral-very-dark-color);
-
+  font-size: 1.8rem;
+  line-height: 130%;
   transition: color 0.05s ease-in-out;
 }
 
@@ -302,16 +282,14 @@ body {
 }
 
 .menu-open-button {
+  background-image: url(../assets/menu-open-button.svg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   position: fixed;
-
   width: 40px;
   height: 40px;
   bottom: 30px;
   right: 30px;
-  background-image: url(../assets/menu-open-button.svg);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-
   transition: transform 0.2s ease-in-out;
 }
 
@@ -327,11 +305,12 @@ body {
 /* Credit: https://www.w3schools.com/howto/howto_css_modals.asp */
 /* The Modal (background) */
 .modal-overlay {
-  /* Taking out of the normal flow to cover the whole screen */
+  /* # display: none; */
   position: fixed;
   /* Sit on top */
   z-index: 1;
   /* Location of the box */
+  padding-top: 100px;
   left: 0;
   top: 0;
   width: 100%;
@@ -356,76 +335,51 @@ body {
 
 /* Modal Content */
 .modal-menu {
-  /* Fixed position so I can align the menu to the right */
-  position: fixed;
-  /* vertically nearly centering with top and bottom at 0 */
-  top: 1rem;
-  /* Will not move up or down. Useful for small heights */
-  transform: translateY(0%);
-  /* Off screen by default */
-  right: -27rem;
-  /* To align menu items in a vertical order */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  min-width: 28.5rem;
-  max-width: max-content;
-  /* min-height: clamp(77vh, 550px, 100%); */
-  /* min-height: 100vh; */
-  max-height: max-content;
+  position: absolute;
+  width: 230px;
+  min-height: 500px;
+  float: right;
   /* Moves the menu off screen */
-  /* right: -230px; */
-  /* bottom: 10px; */
-  padding: 1rem 0 1rem 0;
-  border-radius: 30px;
-  /* Makes the menu slide in from the right */
+  right: -230px;
+  bottom: 10px;
   transition: right 0.4s ease, visibility 0s linear 0.4s;
-  background-image: url(../assets/side-menu-rectangle.png);
-  background-position: center -1rem;
-  background-size: 100% 100%;
-  /* background-size: cover; */
+  background-image: url(../assets/side-menu-rectangle.svg);
+  background-position: center 10px;
+  background-size: 100% 98%;
   background-repeat: no-repeat;
+  padding: 0 0 0 6rem;
+  margin-bottom: 10px;
 }
 
 /* Makes menu visible. Toggled with modal-menu.js */
 .modal-menu__open {
-  /* moves the menu on screen 2rem from the right. -23rem defaul */
-  right: 2rem;
-  margin-right: 0;
+  right: 20px;
   transition: right 0.4s ease;
 }
 
 .modal-menu__heading {
-  /* min-width: 20rem; */
-  /* Padding instead of min-width for better compatibility */
-  padding: 0 1.4rem;
-  /* -25% vertical to align heading on the edge of BG image */
-  transform: translate(0%, -25%) rotate(-4deg);
+  width: 200px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  /* This is a shorthand of translateX(-50%) and translateY(-50%) */
+  transform: translate(-50%, 0%) rotate(-4deg);
   background-color: rgba(0, 0, 0, 0.85);
-  color: #fff;
+  color: #FFF;
   font-size: 2.2rem;
-  height: 4rem;
+  height: 40px;
   text-align: center;
   box-shadow: var(--shadow-neutral-dark);
 }
 
-.modal-menu__container {
-  flex-grow: 0;
-  /* Centering content */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .modal-menu__list {
-  /* setting a width so we can center it with flexbox */
-  max-width: max-content;
-  /* Nudging from the top heading to give whitespace */
-  padding-top: 1.2rem;
+
+  /* background-size: contain; */
+  /* Reset with padding: 0; */
+  /* padding: 0;
+  height: 0; */
+  /* padding: 60px 10px 55px 60px; */
   list-style-type: none;
-  /* Setting a smaller size so the menu fits on 360x640 mobile resolution */
-  font-size: 1.3rem;
 }
 
 .modal-menu__list-item {
@@ -433,10 +387,10 @@ body {
 }
 
 .modal-menu__link {
-  font-size: 1.6rem;
-  font-family: var(--main-font);
   text-decoration: none;
+  font-family: var(--main-font);
   color: var(--neutral-very-dark-color);
+  font-size: 1.8rem;
   transition: color 0.05s ease-in-out;
 }
 
@@ -445,9 +399,7 @@ body {
 }
 
 .modal-menu__close-button {
-  align-self: flex-end;
-  /* Aligning the close button within orange background */
-  padding: 0rem 3rem 4rem 0rem;
+  float: right;
 }
 
 .modal-menu__close-button:hover {
@@ -472,6 +424,7 @@ body {
   flex-grow: 1;
   /* To set content on the right of the side-menu */
   order: 1;
+
 }
 
 /* ####### Greetings container ####### */
@@ -483,7 +436,7 @@ body {
 }
 
 .greeting {
-  background: #ffffff;
+  background: #FFFFFF;
   /* Primary color */
   border: 1px solid var(--primary-color);
   padding: 20px;
@@ -558,23 +511,25 @@ body {
   border: 4px solid var(--primary-color);
   cursor: pointer;
   font-weight: 400;
-  color: var(--neutral-color);
+  color: var(--accent-color);
   font-size: 2rem;
   height: 6rem;
   padding: 10px 24px;
   border-radius: 50px;
-  background-color: #fff;
-  box-shadow: 0px 2px 12px 0px rgba(101, 136, 147, 0.1);
-  transition: all 0.2s ease-out;
+  background-color: #FFF;
+  box-shadow: 0px 2px 12px 0px rgba(101, 136, 147, 0.10);
+  transition: all .2s ease-out;
 }
 
 .add-greetings__button:hover {
-  box-shadow: 0px 8px 22px 0px rgba(101, 136, 147, 0.15),
-    0px 4px 6px 0px rgba(239, 127, 16, 0.15);
+  box-shadow: 0px 8px 22px 0px rgba(101, 136, 147, 0.15), 0px 4px 6px 0px rgba(239, 127, 16, 0.15);
   /* box-shadow: 0 8px 22px 0 rgb(37 44 97 / 15%), 0 4px 6px 0 rgb(93 100 148 / 20%); */
+
 }
 
+
 /* CSS */
+
 
 /* ####### 4. Footer ####### */
 .footer {
@@ -597,6 +552,7 @@ body {
   align-items: center;
 }
 
+
 /* ####### 5. Animations ####### */
 @keyframes rotateAndBack {
 
@@ -615,26 +571,27 @@ body {
 }
 
 /* ####### 6. Media queries ####### */
-/* Optimized for resolutions 360px, 600px, 800px and 1280px */
+/* Optimised for resolutions 360px, 600px, 800px and 1280px */
 @media (min-width: 600px) {
 
   /* Increasing button size on tablets from 40px to 60px */
   .menu-open-button {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
   }
 
   /* Adding space in the menu for larger button */
   .modal-menu__list {
-    /* padding-bottom: 76px; */
+    padding-bottom: 76px;
   }
 
   .modal-menu__button-image {
-    height: 50px;
+    height: 60px;
   }
 }
 
 @media (min-width: 800px) {
+
   .logo {
     left: 50px;
     top: 44px;
@@ -647,7 +604,6 @@ body {
     margin: 0 auto;
   }
 
-  /*  */
   .headings {
     margin-left: calc(284px + 23px);
   }
@@ -657,9 +613,7 @@ body {
   }
 
   .side-menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: block;
   }
 
   .content {
@@ -669,6 +623,7 @@ body {
   .menu-open-button {
     display: none;
   }
+
 }
 
 @media (min-width: 1280px) {}

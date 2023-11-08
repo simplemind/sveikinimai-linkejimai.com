@@ -19,3 +19,9 @@ modalOverlay.addEventListener("click", () => {
   modalOverlay.classList.remove("modal-overlay__open");
   modalMenu.classList.remove("modal-menu__open");
 });
+
+// temporary code adding CSS classes modal-overlay__open and modal-menu__open to the modal menu on window load
+// window.addEventListener("load", () => {
+//   modalOverlay.classList.add("modal-overlay__open");
+//   modalMenu.classList.add("modal-menu__open");
+// });
