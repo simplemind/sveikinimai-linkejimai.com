@@ -24,7 +24,7 @@ TABLE OF CONTENTS
 3.	Box Model stuff: height, width, padding, margin and even background.
 4.	Typography: line-height and font-size first as they affect box size. Then text-align: center, etc.
 5.	Manipulation stuff: transform, filter, opacity and other things modifying elements
-6.	Miscellaneous
+6.	Miscellaneous: shaddows
 */
 
 
@@ -70,13 +70,7 @@ video {
 :root {
   /* Dominant colors */
   --primary-color: rgba(29, 151, 226, 0.05);
-  /* 1D97E2 with 5% alpha*/
-  --primary-gradient-left: linear-gradient(90deg,
-      rgba(29, 151, 226, 0.1) 0%,
-      rgba(29, 151, 226, 0) 100%);
-  --primary-gradient-right: linear-gradient(90deg,
-      rgba(29, 151, 226, 0) 0%,
-      rgba(29, 151, 226, 0.1) 100%);
+
   /* Complimentary colors */
   --secondary-color: #ef7f10;
   --secondary-color-light: rgba(239, 127, 16, 0.2);
@@ -86,7 +80,7 @@ video {
   --accent-color: #1d97e2;
 
   /* Neutral colors */
-  --neutral-color: #57747d;
+  --neutral-color: #57747D;
   --neutral-color-dark: #384a50;
   --neutral-color-very-dark: #131a1c;
   --neutral-color-medium: #deecf0;
@@ -104,6 +98,14 @@ video {
   --main-font: "Baloo 2", cursive;
   --text-regular: clamp(10px, calc(0.63vw + 7.75px), 1.4rem);
   /*  */
+
+  /* 1D97E2 with 5% alpha*/
+  --primary-gradient-left: linear-gradient(90deg,
+      rgba(29, 151, 226, 0.1) 0%,
+      rgba(29, 151, 226, 0) 100%);
+  --primary-gradient-right: linear-gradient(90deg,
+      rgba(29, 151, 226, 0) 0%,
+      rgba(29, 151, 226, 0.1) 100%);
 
   /* Shadows */
   --shadow-neutral: 0px 4px 24px rgba(101, 136, 147, 0.15);
@@ -159,34 +161,38 @@ body {
 
 /* A container for the logo to be in same width as main content */
 .header__container {
+  position: relative;
+
   max-width: 1000px;
   margin: 0 auto 0;
-  position: relative;
 }
 
+/* 72px height at 360vw to 120px at 800px. Then media query locks at 120px */
 .logo {
-  /* 72px height at 360vw to 120px at 800px. Then media query locks at 120px */
-  height: clamp(72px, calc(10.91vw + 32.73px), 140px);
-  max-width: 270px;
   position: absolute;
   /* 10px at 360vw and 44px at 1280vw or more */
   top: calc(3.7vw + -3.3px);
   left: 20px;
+
+  height: clamp(72px, calc(10.91vw + 32.73px), 140px);
+  max-width: 270px;
+  padding: clamp(14px, 20vw, 2rem);
   background-image: url(../assets/logo-small.svg);
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  padding: clamp(14px, 20vw, 2rem);
   /* #Todo: Add a shadow. Also on the menu too */
 }
 
+/* 18px at 360vw to 36px at 800vw */
 .logo__text {
-  height: 100%;
   display: flex;
   align-items: center;
-  /* 18px at 360vw to 36px at 800vw */
+
+  height: 100%;
+
   font-size: clamp(1.8rem, calc(2.73vw + 8.18px), 3.6rem);
-  line-height: clamp(1.8rem, calc(4.09vw + 3.27px), 3.6rem);
   font-weight: 300;
+  line-height: clamp(1.8rem, calc(4.09vw + 3.27px), 3.6rem);
 }
 
 .logo__link {
@@ -210,42 +216,34 @@ body {
 
 /* ####### 3.1. Headings ####### */
 .headings {
-  /* background-color: #DEECF0; */
-  min-height: 177px;
   grid-row: 1 / 2;
   grid-column: 1 / 3;
+
+  min-height: max-content;
 }
 
 .headings__h1 {
   padding-left: 20px;
-  color: var(--neutral-color);
+
   font-size: 3.6rem;
   line-height: 100%;
+  color: var(--neutral-color);
 }
 
 .headings__subheading {
-  /* padding: 20px;
-  margin-bottom: 20px;
-  background-image: url(../assets/subheading-bg-small.svg);
-  
-  background-repeat: no-repeat;
-  color: var(--neutral-color-dark);
-  font-size: var(--text-regular);
-  line-height: 150%; */
-  color: var(--neutral-color-dark);
-  font-size: var(--text-regular);
-
   /* Box model stuff */
   height: 0;
   padding: 20px;
   padding-bottom: clamp(90px, 20vw, 20%);
   margin-bottom: 20px;
-  line-height: 140%;
-  background-image: url(../assets/subheading-bg-small.svg);
-  background-size: contain;
+  background-image: url(../assets/subheading-bg-very-small.svg);
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center center;
-  /*reset*/
+
+  line-height: 140%;
+  color: var(--neutral-color-dark);
+  font-size: var(--text-regular);
 }
 
 /* ####### 3.2. Side menu (left) ####### */
@@ -330,7 +328,7 @@ body {
   /* Taking out of the normal flow to cover the whole screen */
   position: fixed;
   /* Sit on top */
-  z-index: 1;
+  z-index: 100;
   /* Location of the box */
   left: 0;
   top: 0;
@@ -544,7 +542,7 @@ body {
 }
 
 /* ####### Pagination container ####### */
-.pagination-container {
+.pagination {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -568,13 +566,86 @@ body {
   transition: all 0.2s ease-out;
 }
 
+/* For temporarily hiding while loading new content and showing a progress wave */
+.add-greetings__button--hidden {
+  display: none;
+}
+
 .add-greetings__button:hover {
   box-shadow: 0px 8px 22px 0px rgba(101, 136, 147, 0.15),
     0px 4px 6px 0px rgba(239, 127, 16, 0.15);
-  /* box-shadow: 0 8px 22px 0 rgb(37 44 97 / 15%), 0 4px 6px 0 rgb(93 100 148 / 20%); */
 }
 
-/* CSS */
+/* Infinite scroll wave animation */
+.pagination__wave {
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination__wave--show {
+  display: flex;
+}
+
+.pagination__wave-line {
+  width: 9px;
+  height: 6rem;
+  background: linear-gradient(45deg, #EF7F10, #fff);
+  margin: 7px;
+
+  border-radius: 20px;
+  animation: wave 1s linear infinite;
+}
+
+.pagination__wave-line:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.pagination__wave-line:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.pagination__wave-line:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.pagination__wave-line:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+.pagination__wave-line:nth-child(6) {
+  animation-delay: 0.5s;
+}
+
+.pagination__wave-line:nth-child(7) {
+  animation-delay: 0.6s;
+}
+
+.pagination__wave-line:nth-child(8) {
+  animation-delay: 0.7s;
+}
+
+.pagination__wave-line:nth-child(9) {
+  animation-delay: 0.8s;
+}
+
+.pagination__wave-line:nth-child(10) {
+  animation-delay: 0.9s;
+}
+
+@keyframes wave {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
 
 /* ####### 4. Footer ####### */
 .footer {
@@ -616,7 +687,18 @@ body {
 
 /* ####### 6. Media queries ####### */
 /* Optimized for resolutions 360px, 600px, 800px and 1280px */
+/* Media query for subheading BG image */
+/* Cannot get the image to stretch beyond its proportions */
+@media (min-width: 430px) {
+  .headings__subheading {
+    background-image: url(../assets/subheading-bg-small.svg);
+  }
+}
+
 @media (min-width: 600px) {
+  .headings__subheading {
+    background-image: url(../assets/subheading-bg-small.svg);
+  }
 
   /* Increasing button size on tablets from 40px to 60px */
   .menu-open-button {
@@ -635,6 +717,10 @@ body {
 }
 
 @media (min-width: 800px) {
+  .headings__subheading {
+    background-image: url(../assets/subheading-bg-medium.svg);
+  }
+
   .logo {
     left: 50px;
     top: 44px;

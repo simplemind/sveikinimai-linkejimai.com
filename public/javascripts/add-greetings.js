@@ -6,7 +6,7 @@ const addGreetingsButton = document.getElementById("add-greetings");
 
 // Adding event listener to the button while testing
 addGreetingsButton.addEventListener("click", () => {
-  addGreetings(greetingsArray, contentContainer);
+  loadContentAndAnimations();
 });
 
 //Creating a new IntersectionObserver instance where content is visible 100%
@@ -20,10 +20,7 @@ let callback = (entries) => {
     if (entry.isIntersecting) {
       // console.log(entry);
 
-      //add a delay of 500ms
-      setTimeout(() => {
-        addGreetings(greetingsArray, contentContainer);
-      }, 500);
+      loadContentAndAnimations();
       // Disconnecting the observer, if not more content is available
       // observer.disconnect();
     }
@@ -31,6 +28,7 @@ let callback = (entries) => {
 };
 
 let observer = new IntersectionObserver(callback, options);
+// #ToDo: disabled while developing styles
 observer.observe(footer);
 
 // Adds greetings from array to the page
@@ -39,16 +37,45 @@ function addGreetings(greetingsArray, contentContainer) {
     const greetingArticle = createGreetingArticle(greeting);
     contentContainer.appendChild(greetingArticle);
   });
+  3;
 }
 
 // Adds greetings enclosed in p inside article.greeting
 function createGreetingArticle(text) {
   const greeting = document.createElement("p");
   greeting.innerText = text;
+  greeting.classList.add("greeting__text");
   const greetingArticle = document.createElement("article");
   greetingArticle.classList.add("greeting");
   greetingArticle.appendChild(greeting);
   return greetingArticle;
+}
+
+// A function that toggles .pagination__wave--show class to the pagination wave from hidden to show
+function togglePaginationWave() {
+  const paginationWave = document.querySelector(".pagination__wave");
+  paginationWave.classList.toggle("pagination__wave--show");
+}
+
+// A function that toggles from show to hidden the .add-greetings button
+function toggleAddGreetingsButton() {
+  addGreetingsButton.classList.toggle("add-greetings__button--hidden");
+}
+
+// A function that loads content and animations
+// Encapsules addGreetings and related show/hide functions
+function loadContentAndAnimations() {
+  // show wave
+  togglePaginationWave();
+  // hide button
+  toggleAddGreetingsButton();
+  setTimeout(() => {
+    // hide wave
+    togglePaginationWave();
+    addGreetings(greetingsArray, contentContainer);
+    // show button
+    toggleAddGreetingsButton();
+  }, 1000);
 }
 
 // An array of greetings

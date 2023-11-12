@@ -16,8 +16,11 @@ closeMenuButton.addEventListener("click", () => {
 });
 
 modalOverlay.addEventListener("click", () => {
-  modalOverlay.classList.remove("modal-overlay__open");
-  modalMenu.classList.remove("modal-menu__open");
+  // Closing the modal menu only if the click was on the modal overlay
+  if (event.target === modalOverlay) {
+    modalOverlay.classList.remove("modal-overlay__open");
+    modalMenu.classList.remove("modal-menu__open");
+  }
 });
 
 // temporary code adding CSS classes modal-overlay__open and modal-menu__open to the modal menu on window load
