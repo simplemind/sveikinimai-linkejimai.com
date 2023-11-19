@@ -5,17 +5,21 @@ const openMenuButton = document.querySelector(".menu-open-button");
 
 const closeMenuButton = document.querySelector(".modal-menu__close-button");
 
-openMenuButton.addEventListener("click", () => {
+openMenuButton.addEventListener("click", (event) => {
+  // Preventing the anchor tag from redirecting to the href
+  event.preventDefault();
   modalOverlay.classList.add("modal-overlay__open");
   modalMenu.classList.add("modal-menu__open");
 });
 
-closeMenuButton.addEventListener("click", () => {
+closeMenuButton.addEventListener("click", (event) => {
+  // Preventing the anchor tag from redirecting to the href
+  event.preventDefault();
   modalOverlay.classList.remove("modal-overlay__open");
   modalMenu.classList.remove("modal-menu__open");
 });
 
-modalOverlay.addEventListener("click", () => {
+modalOverlay.addEventListener("click", (event) => {
   // Closing the modal menu only if the click was on the modal overlay
   if (event.target === modalOverlay) {
     modalOverlay.classList.remove("modal-overlay__open");
@@ -23,7 +27,7 @@ modalOverlay.addEventListener("click", () => {
   }
 });
 
-// temporary code adding CSS classes modal-overlay__open and modal-menu__open to the modal menu on window load
+//#DEV: Open modal menu on window load
 // window.addEventListener("load", () => {
 //   modalOverlay.classList.add("modal-overlay__open");
 //   modalMenu.classList.add("modal-menu__open");

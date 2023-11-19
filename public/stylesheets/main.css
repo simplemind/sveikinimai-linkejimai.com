@@ -1,24 +1,27 @@
-/* #######  ####### */
+/* #######|  |####### */
 /*
 TABLE OF CONTENTS
 
   1. Global styles
-  1.1. Browser resets by Kevin Powell
+  1.1. Browser resets
   1.2. Global variables
   1.3. Global rules
   2. Header
   3. Main
   3.1. Headings
   3.2. Side menu (left)
-  3.3. Content container
-  3.3.1. Greetings container
-  3.3.2. Pagination container
+  3.3. Modal menu
+  3.4. Content container
+  3.4.1. Greetings container
+  3.4.2. Pagination container
   4. Footer
   5. Animations
   6. Media queries
 */
 
-/* Organizing CSS properties in logical groups:
+/* STYLE LOGICAL GROUPS */
+/* CSS style properties are organized in the following logical groups:
+Credit: Kevin Powell
 1.	Display stuff: flex, grid, etc.
 2.	Positioning stuff: position: absolute, z-index, top, right, etc.
 3.	Box Model stuff: height, width, padding, margin and even background.
@@ -28,8 +31,9 @@ TABLE OF CONTENTS
 */
 
 
-/* ####### 1. Global styles ####### */
-/* ####### 1.1. Browser resets by Kevin Powell ####### */
+/* #######| 1. Global styles |####### */
+/* #######| 1.1. Browser resets |####### */
+/* Credit: Kevin Powell */
 /* makes sizing simpler */
 *,
 *::before,
@@ -65,7 +69,7 @@ video {
 }
 
 
-/* ####### 1.2. Declaring global variables ####### */
+/* #######| 1.2. Global variables |####### */
 /* Colors */
 :root {
   /* Dominant colors */
@@ -115,7 +119,8 @@ video {
   --shadow-orange-medium: 0px 2px 12px rgba(239, 127, 16, 0.15);
 }
 
-/* ####### 1.3. Declaring global rules ####### */
+
+/* #######| 1.3. Global rules |####### */
 html {
   /* 62.5% of 16px browser font size is 10px */
   /*  remaining font-size: 1.6rem;  rule in the body tag */
@@ -142,7 +147,7 @@ body {
 }
 
 
-/* ####### 2. Header ####### */
+/* #######| 2. Header |####### */
 /* 250-277-314 */
 .header {
   position: sticky;
@@ -201,7 +206,7 @@ body {
 }
 
 
-/* ####### 3. Main ####### */
+/* #######| 3. Main |####### */
 .main {
   display: grid;
   grid-template-columns: 1fr;
@@ -214,7 +219,7 @@ body {
 }
 
 
-/* ####### 3.1. Headings ####### */
+/* #######| 3.1. Headings |####### */
 .headings {
   grid-row: 1 / 2;
   grid-column: 1 / 3;
@@ -246,7 +251,7 @@ body {
   font-size: var(--text-regular);
 }
 
-/* ####### 3.2. Side menu (left) ####### */
+/* #######| 3.2. Side menu (left) |####### */
 .side-menu {
   display: none;
   grid-row: 2 / 3;
@@ -254,6 +259,8 @@ body {
 
   position: relative;
 
+  /* margin-top to align top of orange container with top of greetings container */
+  margin-top: -10px;
   height: max-content;
   background-image: url(../assets/side-menu-rectangle.png);
   background-position: center -10px;
@@ -278,7 +285,7 @@ body {
 }
 
 .side-menu__list {
-  /* top padding for space from heading and bottom to extend BG image to cover full list */
+  /* top padding for space from heading and bottom to extend BG image to cover the full list */
   padding: 3rem 0 10rem 0;
   margin-bottom: 10px;
 
@@ -306,7 +313,7 @@ body {
   height: 40px;
   bottom: 30px;
   right: 30px;
-  background-image: url(../assets/menu-open-button.svg);
+  background-image: url(../assets/circle-menu-solid.svg);
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
@@ -315,13 +322,19 @@ body {
 
 .menu-open-button:hover {
   animation: rotateAndBack 0.4s ease-out;
+
+  background-image: url(../assets/circle-menu-solid-hover.svg);
+  /* #ToDo: To add this or another shadow after svg's are transparent instead of white as currently */
+  /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+
 }
 
 .menu-open-button:active {
   transform: scale(0.9);
 }
 
-/* Modal menu */
+
+/* #######| 3.3. Modal menu |####### */
 /* Credit: https://www.w3schools.com/howto/howto_css_modals.asp */
 /* The Modal (background) */
 .modal-overlay {
@@ -332,86 +345,98 @@ body {
   /* Location of the box */
   left: 0;
   top: 0;
+
   width: 100%;
   height: 100%;
-  /* Enable scroll if needed */
-  overflow: auto;
   /* Fallback color */
   background-color: rgb(0, 0, 0);
   /* Black with opacity */
   background-color: rgba(0, 0, 0, 0.7);
+
+  /* Enable scroll if needed */
+  overflow: auto;
+
   opacity: 0;
+
   visibility: hidden;
   transition: opacity 0.4s ease, visibility 0s, linear 0.4s;
 }
 
 /* Makes overlay visible. Toggled with JS */
 .modal-overlay__open {
-  opacity: 1;
+  /* visibility does not change layoyt unlike display:none */
   visibility: visible;
   transition: opacity 0.4s ease;
+  opacity: 1;
 }
 
 /* Modal Content */
 .modal-menu {
-  /* Fixed position so I can align the menu to the right */
-  position: fixed;
-  /* vertically nearly centering with top and bottom at 0 */
-  top: 1rem;
-  /* Will not move up or down. Useful for small heights */
-  transform: translateY(0%);
-  /* Off screen by default */
-  right: -27rem;
   /* To align menu items in a vertical order */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
+  /* Fixed position so I can align the menu to the right */
+  position: fixed;
+  /* vertically nearly centering with top and bottom at 0 */
+  top: 1rem;
+  right: 2rem;
+  /* Off screen by default */
+  transform: translate(100%, 1rem);
+
+
   min-width: 28.5rem;
   max-width: max-content;
   /* min-height: clamp(77vh, 550px, 100%); */
   /* min-height: 100vh; */
   max-height: max-content;
-  /* Moves the menu off screen */
-  /* right: -230px; */
-  /* bottom: 10px; */
   padding: 1rem 0 1rem 0;
-  border-radius: 30px;
-  /* Makes the menu slide in from the right */
-  transition: right 0.4s ease, visibility 0s linear 0.4s;
   background-image: url(../assets/side-menu-rectangle.png);
   background-position: center -1rem;
   background-size: 100% 100%;
   /* background-size: cover; */
   background-repeat: no-repeat;
+
+  border-radius: 30px;
+  /* Will not move up or down. Useful for small heights */
+  /* transform: translateY(0%); */
+  /* Makes the menu slide in from the right */
+  transition: transform 0.4s ease, visibility 0s linear 0.4s;
 }
 
 /* Makes menu visible. Toggled with modal-menu.js */
 .modal-menu__open {
-  /* moves the menu on screen 2rem from the right. -23rem defaul */
-  right: 2rem;
+  /* moves the menu on screen 2rem from the right. -23rem default */
+  transform: translate(0%, 1rem);
+  /* right: 2rem; */
+
   margin-right: 0;
-  transition: right 0.4s ease;
+
+  transition: transform 0.4s ease;
 }
 
 .modal-menu__heading {
-  /* min-width: 20rem; */
+  height: 4rem;
   /* Padding instead of min-width for better compatibility */
   padding: 0 1.4rem;
-  /* -25% vertical to align heading on the edge of BG image */
-  transform: translate(0%, -25%) rotate(-4deg);
   background-color: rgba(0, 0, 0, 0.85);
+
   color: #fff;
   font-size: 2.2rem;
-  height: 4rem;
   text-align: center;
+
+  /* -25% vertical to align heading on the edge of BG image */
+  transform: translate(0%, -25%) rotate(-4deg);
+
   box-shadow: var(--shadow-neutral-dark);
 }
 
 .modal-menu__container {
+  display: flex;
   flex-grow: 0;
   /* Centering content */
-  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -421,6 +446,7 @@ body {
   max-width: max-content;
   /* Nudging from the top heading to give whitespace */
   padding-top: 1.2rem;
+
   list-style-type: none;
   /* Setting a smaller size so the menu fits on 360x640 mobile resolution */
   font-size: 1.3rem;
@@ -435,6 +461,7 @@ body {
   font-family: var(--main-font);
   text-decoration: none;
   color: var(--neutral-very-dark-color);
+
   transition: color 0.05s ease-in-out;
 }
 
@@ -444,11 +471,21 @@ body {
 
 .modal-menu__close-button {
   align-self: flex-end;
+
   /* Aligning the close button within orange background */
-  padding: 0rem 3rem 4rem 0rem;
+  width: 40px;
+  height: 40px;
+  /* Aligning the close button within orange background */
+  margin: 0 37px 46px 0;
+  background-image: url(../assets/close-icon-white.svg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
 }
 
 .modal-menu__close-button:hover {
+  background-image: url(../assets/close-icon-vdark.svg);
+
   animation: rotateAndBack 0.4s ease-out;
 }
 
@@ -456,11 +493,7 @@ body {
   transform: scale(0.9);
 }
 
-.modal-menu__button-image {
-  height: 40px;
-}
-
-/* Content */
+/* #######| 3.4. Content container |####### */
 .content {
   /* width: 6%; */
   flex-basis: 100px;
@@ -472,28 +505,29 @@ body {
   order: 1;
 }
 
-/* ####### Greetings container ####### */
+/* #######| 3.4.1. Greetings container |####### */
 .greetings-container {
   display: grid;
+
   /* Two columns once width is above 800px */
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
 
 .greeting {
-  background: #ffffff;
-  /* Primary color */
-  border: 1px solid var(--primary-color);
-  padding: 20px;
-
-  /* Shadow. Neutral */
-  box-shadow: 0px 4px 24px rgba(101, 136, 147, 0.15);
-  border-radius: 10px;
-
   /* In order to position icons at the bottom */
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+
+  background: #fff;
+  padding: 20px;
+
+  /* Shadow. Neutral */
+  border: 1px solid var(--primary-color);
+  border-radius: 10px;
+  box-shadow: 0px 4px 24px rgba(101, 136, 147, 0.15);
+
 }
 
 .greeting__text {
@@ -510,14 +544,17 @@ body {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+
   padding-top: 20px;
   gap: 20px;
+
   color: var(--accent-color);
 }
 
 .greeting__icon {
   height: 40px;
   width: 40px;
+
   transition: transform 0.1s ease-in-out;
 }
 
@@ -541,29 +578,34 @@ body {
   background-image: url(../assets/mail-icon.svg);
 }
 
-/* ####### Pagination container ####### */
+/* #######| 3.4.2. Pagination container |####### */
 .pagination {
   display: flex;
   justify-content: space-between;
   align-items: center;
   justify-content: center;
+
   margin-top: 20px;
 }
 
 .add-greetings__button {
   display: inline-block;
-  outline: 0;
-  border: 4px solid var(--primary-color);
-  cursor: pointer;
+
+  height: 6rem;
+  padding: 10px 24px;
+  background-color: #fff;
+
   font-weight: 400;
   color: var(--neutral-color);
   font-size: 2rem;
-  height: 6rem;
-  padding: 10px 24px;
+
+  border: 4px solid var(--primary-color);
   border-radius: 50px;
-  background-color: #fff;
-  box-shadow: 0px 2px 12px 0px rgba(101, 136, 147, 0.1);
   transition: all 0.2s ease-out;
+
+  box-shadow: 0px 2px 12px 0px rgba(101, 136, 147, 0.1);
+  outline: 0;
+  cursor: pointer;
 }
 
 /* For temporarily hiding while loading new content and showing a progress wave */
@@ -579,6 +621,7 @@ body {
 /* Infinite scroll wave animation */
 .pagination__wave {
   display: none;
+
   justify-content: center;
   align-items: center;
 }
@@ -589,9 +632,10 @@ body {
 
 .pagination__wave-line {
   width: 9px;
-  height: 6rem;
-  background: linear-gradient(45deg, #EF7F10, #fff);
+  /* Height is 36px at 360vw, max height is 6rem. Preferred is  */
+  height: clamp(3.6vw, calc(5.45vw + 16.36px), 6rem);
   margin: 7px;
+  background: linear-gradient(45deg, #EF7F10, #fff);
 
   border-radius: 20px;
   animation: wave 1s linear infinite;
@@ -633,25 +677,13 @@ body {
   animation-delay: 0.9s;
 }
 
-@keyframes wave {
-  0% {
-    transform: scale(0);
-  }
 
-  50% {
-    transform: scale(1);
-  }
-
-  100% {
-    transform: scale(0);
-  }
-}
-
-/* ####### 4. Footer ####### */
+/* #######| 4. Footer |####### */
 .footer {
   width: 100%;
   height: 7.2rem;
   margin-top: 50px;
+
   /* Styling */
   line-height: 150%;
   font-size: 1.1rem;
@@ -659,16 +691,17 @@ body {
 }
 
 .footer__container {
-  /* #ToDo: not working. Needs fixing */
-  margin: 0 auto;
-  max-width: 1000px;
-  padding: 0 40px;
   display: flex;
   justify-content: start;
   align-items: center;
+
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 0 40px;
 }
 
-/* ####### 5. Animations ####### */
+/* #######| 5. Animations |####### */
+/* Button rotations */
 @keyframes rotateAndBack {
 
   /* define animation */
@@ -685,7 +718,34 @@ body {
   }
 }
 
-/* ####### 6. Media queries ####### */
+/* Menu slide in */
+@keyframes slideIn {
+  0% {
+    right: -27rem;
+  }
+
+  100% {
+    right: 2rem;
+  }
+}
+
+/* Pagination waves */
+@keyframes wave {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+
+/* #######| 6. Media queries |####### */
 /* Optimized for resolutions 360px, 600px, 800px and 1280px */
 /* Media query for subheading BG image */
 /* Cannot get the image to stretch beyond its proportions */
@@ -717,6 +777,10 @@ body {
 }
 
 @media (min-width: 800px) {
+  .headings__h1 {
+    font-size: 4.4rem;
+  }
+
   .headings__subheading {
     background-image: url(../assets/subheading-bg-medium.svg);
   }
@@ -735,6 +799,8 @@ body {
 
   /*  */
   .headings {
+    /* To align h1 just below the logo */
+    margin-top: calc(4.17vw + 6.67px);
     margin-left: calc(284px + 23px);
   }
 
@@ -748,8 +814,16 @@ body {
     align-items: center;
   }
 
+  .side-menu__link {
+    font-size: 1.8rem;
+  }
+
   .content {
     margin: 10px 0 0 23px;
+  }
+
+  .greeting__text {
+    font-size: 1.8rem;
   }
 
   .menu-open-button {
@@ -757,6 +831,20 @@ body {
   }
 }
 
-@media (min-width: 1280px) {}
+@media (min-width: 1280px) {
+  .headings__h1 {
+    font-size: 5rem;
+  }
 
-/* Move logo to the left edge of the container at 800px+ */
+  .headings__subheading {
+    font-size: 1.6rem;
+  }
+
+  .side-menu__link {
+    font-size: 2rem;
+  }
+
+  .greeting__text {
+    font-size: 2rem;
+  }
+}

@@ -1,8 +1,8 @@
 // Javascript code to add greetings to the page
 const contentContainer = document.querySelector(".greetings-container");
 const footer = document.querySelector(".footer");
-
 const addGreetingsButton = document.getElementById("add-greetings");
+const paginationWave = document.querySelector(".pagination__wave");
 
 // Adding event listener to the button while testing
 addGreetingsButton.addEventListener("click", () => {
@@ -28,7 +28,6 @@ let callback = (entries) => {
 };
 
 let observer = new IntersectionObserver(callback, options);
-// #ToDo: disabled while developing styles
 observer.observe(footer);
 
 // Adds greetings from array to the page
@@ -51,31 +50,30 @@ function createGreetingArticle(text) {
   return greetingArticle;
 }
 
-// A function that toggles .pagination__wave--show class to the pagination wave from hidden to show
-function togglePaginationWave() {
-  const paginationWave = document.querySelector(".pagination__wave");
-  paginationWave.classList.toggle("pagination__wave--show");
-}
-
-// A function that toggles from show to hidden the .add-greetings button
-function toggleAddGreetingsButton() {
-  addGreetingsButton.classList.toggle("add-greetings__button--hidden");
+// A function that toggles classes on pagination__wave and addGreetingsButton from hidden to show
+function toggleElementClass(shouldAddClass, element, className) {
+  if (shouldAddClass) {
+    element.classList.add(className);
+  } else {
+    element.classList.remove(className);
+  }
 }
 
 // A function that loads content and animations
 // Encapsules addGreetings and related show/hide functions
-function loadContentAndAnimations() {
-  // show wave
-  togglePaginationWave();
-  // hide button
-  toggleAddGreetingsButton();
-  setTimeout(() => {
-    // hide wave
-    togglePaginationWave();
-    addGreetings(greetingsArray, contentContainer);
-    // show button
-    toggleAddGreetingsButton();
-  }, 1000);
+async function loadContentAndAnimations() {
+  // Hiding the button
+  toggleElementClass(true, addGreetingsButton, "add-greetings__button--hidden");
+  // Showing the wave
+  toggleElementClass(true, paginationWave, "pagination__wave--show");
+  // Adding a delay to show the wave
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  // Adding greetings
+  addGreetings(greetingsArray, contentContainer);
+  // Hide the wave
+  toggleElementClass(false, paginationWave, "pagination__wave--show");
+  // Show the button
+  toggleElementClass(false, addGreetingsButton, "add-greetings__button--hidden");
 }
 
 // An array of greetings

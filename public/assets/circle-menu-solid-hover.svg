@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="600px" height="600px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g id="Black">
+        <circle id="Circle" cx="299.5" cy="300.193" r="282.5" style="fill:rgb(239,127,16);stroke:black;stroke-width:32px;"/>
+        <path id="Line" d="M150,200L450,200" style="fill:none;stroke:black;stroke-width:40px;"/>
+        <path id="Line1" serif:id="Line" d="M150,300L450,300" style="fill:none;stroke:black;stroke-width:40px;"/>
+        <path id="Line2" serif:id="Line" d="M150,400L450,400" style="fill:none;stroke:black;stroke-width:40px;"/>
+    </g>
+    <g id="Very-dark" serif:id="Very dark">
+        <circle id="Circle1" serif:id="Circle" cx="299.5" cy="300.193" r="282.5" style="fill:rgb(239,127,16);stroke:rgb(19,26,28);stroke-width:32px;"/>
+        <path id="Line3" serif:id="Line" d="M150,200L450,200" style="fill:none;stroke:rgb(19,26,28);stroke-width:40px;"/>
+        <path id="Line4" serif:id="Line" d="M150,300L450,300" style="fill:none;stroke:rgb(19,26,28);stroke-width:40px;"/>
+        <path id="Line5" serif:id="Line" d="M150,400L450,400" style="fill:none;stroke:rgb(19,26,28);stroke-width:40px;"/>
+    </g>
+</svg>
