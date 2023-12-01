@@ -1,0 +1,22 @@
+<% layout('layouts/boilerplate') -%>
+
+<h1>Homepage</h1>
+<sub>This is a homepage</sub>
+
+<div>
+  <!-- Loop through categories and extract categoryName and orderNumber into a list -->
+  <h2>Categories</h2>
+  <ul>
+    <% categories.forEach(function(category){ %>
+    <li><%= category.categoryName %> - <%= category.orderNumber %></li>
+    <% }) %>
+  </ul>
+
+  <h2>Greetings</h2>
+  <ul>
+    <% greetings.forEach(function(greeting){ %>
+    <li><%= greeting.greeting %></li>
+    <% }) %>
+  </ul>
+
+</div>
