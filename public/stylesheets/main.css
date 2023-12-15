@@ -188,6 +188,11 @@ body {
   /* #Todo: Add a shadow. Also on the menu too */
 }
 
+.logo:hover {
+  transition: all 0.2s ease-out;
+  transform: scale(1.015);
+}
+
 /* 18px at 360vw to 36px at 800vw */
 .logo__text {
   display: flex;
@@ -308,6 +313,10 @@ body {
 
 .menu-open-button {
   position: fixed;
+  /* Increasing so the button is over greeting article when article hover is applied */
+  z-index: 10;
+  /* Visible on mobile screens */
+  opacity: 1;
 
   width: 40px;
   height: 40px;
@@ -318,6 +327,7 @@ body {
   background-size: 100% 100%;
 
   transition: transform 0.2s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .menu-open-button:hover {
@@ -326,13 +336,15 @@ body {
   background-image: url(../assets/circle-menu-solid-hover.svg);
   /* #ToDo: To add this or another shadow after svg's are transparent instead of white as currently */
   /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
-
 }
 
 .menu-open-button:active {
   transform: scale(0.9);
 }
 
+.menu-open-button__hidden {
+  opacity: 0;
+}
 
 /* #######| 3.3. Modal menu |####### */
 /* Credit: https://www.w3schools.com/howto/howto_css_modals.asp */
@@ -527,7 +539,12 @@ body {
   border: 1px solid var(--primary-color);
   border-radius: 10px;
   box-shadow: 0px 4px 24px rgba(101, 136, 147, 0.15);
+}
 
+.greeting:hover {
+  transition: all 0.2s ease-out;
+  box-shadow: rgba(101, 136, 147, 0.15) 0px 6px 12px 4px;
+  transform: scale(1.015);
 }
 
 .greeting__text {
@@ -538,6 +555,7 @@ body {
   font-size: 1.4rem;
   line-height: 150%;
   color: var(--neutral-dark-color);
+  white-space: pre-line;
 }
 
 .greeting__icon-container {
@@ -608,7 +626,8 @@ body {
   cursor: pointer;
 }
 
-/* For temporarily hiding while loading new content and showing a progress wave */
+/* For hiding while loading new content and showing a progress wave */
+/* Or after full content is paginated */
 .add-greetings__button--hidden {
   display: none;
 }
@@ -826,8 +845,9 @@ body {
     font-size: 1.8rem;
   }
 
+  /* Hiding on large screens */
   .menu-open-button {
-    display: none;
+    opacity: 0;
   }
 }
 
