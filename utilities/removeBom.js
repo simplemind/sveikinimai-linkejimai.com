@@ -3,7 +3,7 @@
 // Its presence at the start of the string is causing it to be URL-encoded as %EF%BB%BF.
 const MongoClient = require("mongodb").MongoClient;
 const url = "mongodb://localhost:27017";
-// const url = "mongodb+srv://adminuser:Adminpass01@clustersveikinimai.uu5tqud.mongodb.net/?retryWrites=true&w=majority";
+// const url = "mongodb+srv://adminuser:<password>@clustersveikinimai.uu5tqud.mongodb.net/?retryWrites=true&w=majority";
 
 async function removeBOM() {
   const client = await MongoClient.connect(url, { useUnifiedTopology: true });

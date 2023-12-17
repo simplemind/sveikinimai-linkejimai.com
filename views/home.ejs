@@ -1,105 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title><%= pageDefaults.pageTitle %></title>
-  <meta name="description" content="<%= pageDefaults.metaDescription %>" />
-  <meta name="keywords" content="<%= pageDefaults.metaKeywords %>" />
-
-  <meta name="author" content="karolis" />
-  <meta name="copyright" content="karolis" />
-  <meta http-equiv="Content-Language" content="lt" />
-  <meta name="robots" content="ALL" />
-  <meta name="revisit-after" content="14 days" />
-
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="#" type="image/x-icon">
-  <!-- Google fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&family=Nunito:wght@300;400&family=Quicksand&display=swap" rel="stylesheet">
-  <!-- Font Awesome icons -->
-  <script src="https://kit.fontawesome.com/29d10d41d8.js" crossorigin="anonymous"></script>
-  <!-- Main css rules -->
-  <link rel="stylesheet" href="/stylesheets/main.css">
-</head>
-<body>
-  <header class="header">
-    <section class="header__container">
-      <div class="logo">
-        <p class="logo__text">
-          <a class="logo__link" href="<%= rootUrl %>">sveikinimai <br> ir linkėjimai</a>
-        </p>
-      </div>
-    </section>
-  </header>
-  <!-- The Modal -->
-  <section class="modal-overlay">
-    <nav class="modal-menu">
-      <div class="modal-menu__container">
-        <h3 class="modal-menu__heading">sveikinimų progos</h3>
-        <ul class="modal-menu__list">
-          <% categories.forEach(category => { %>
-          <li class="modal-menu__list-item"><a class="modal-menu__link" href="<%= rootUrl+"/"+category.categoryTag %>"><%= category.categoryName %></a></li>
-          <% }); %>
-        </ul>
-      </div>
-      <a class="modal-menu__close-button" href="#"></a>
-    </nav>
+<% layout('layouts/boilerplate') -%>
+<hgroup class="headings">
+  <h1 class="headings__h1"><%= pageTags.pageHeadingH1 %></h1>
+  <p class="headings__subheading"><%= pageTags.pageSubheading %></p>
+</hgroup>
+<section class="content">
+  <section class="greetings-container">
+    <% greetings.forEach(function(greeting, index){ %>
+    <%# index is used to add page numbers to data-page attribute for 11th, 21st, 31st, etc greetings for when user loads a specific page %>
+    <article class="greeting" <% if ((index + 1) % 10 ===0) { %>data-page="<%= Math.floor((index + 1) / 10) + 1 %>" <% } %>>
+      <p class="greeting__text"><%= greeting.greeting %></p>
+      <div class="greeting__icon-container" style="display: none;"></div>
+    </article>
+    <% }) %>
   </section>
-  <main class="main">
-    <hgroup class="headings">
-      <h1 class="headings__h1"><%= pageDefaults.pageHeadingH1 %></h1>
-      <p class="headings__subheading"><%= pageDefaults.subheading %></p>
-    </hgroup>
-    <section class="content">
-      <section class="greetings-container">
-        <% greetings.forEach(function(greeting, index){ %>
-        <%# index is used to add page numbers to data-page attribute for 11th, 21st, 31st, etc greetings for when user loads a specific page %>
-        <article class="greeting" <% if ((index + 1) % 10 ===0) { %>data-page="<%= Math.floor((index + 1) / 10) + 1 %>" <% } %>>
-          <p class="greeting__text"><%= greeting.greeting %></p>
-          <div class="greeting__icon-container" style="display: none;"></div>
-        </article>
-        <% }) %>
-      </section>
-      <section class="pagination">
-        <article>
-          <div class="pagination__wave">
-            <div class="pagination__wave-line"></div>
-            <div class="pagination__wave-line"></div>
-            <div class="pagination__wave-line"></div>
-            <div class="pagination__wave-line"></div>
-            <div class="pagination__wave-line"></div>
-            <div class="pagination__wave-line"></div>
-            <div class="pagination__wave-line"></div>
-            <div class="pagination__wave-line"></div>
-            <div class="pagination__wave-line"></div>
-            <div class="wave"></div>
-          </div>
-          <button id="add-greetings" class="add-greetings__button">Daugiau sveikinimų</button>
-        </article>
-      </section>
-
-    </section>
-    <nav class="side-menu">
-      <h3 class="side-menu__heading">sveikinimų progos</h3>
-      <ul class="side-menu__list">
-        <% categories.forEach(category => { %>
-        <li><a class="side-menu__link" href="<%= rootUrl+"/"+category.categoryTag %>"><%= category.categoryName %></a></li>
-        <% }); %>
-      </ul>
-    </nav>
-    <a class="menu-open-button" href="#"></a>
-  </main>
-  <footer class="footer">
-    <section class="footer__container">Webmaster karolis<br>Visos teisės saugomos &copy; 2023</section>
-  </footer>
-  <script>window.currentCategory='<%= currentCategory // Passing into add-greetings.js %>'</script>
-  <script>window.numberOfPages='<%= numberOfPages // Passing into add-greetings.js %>'</script>
-  <script src="/javascripts/modal-menu.js"></script>
-  <script src="/javascripts/pagination.js"></script>
-</body>
-</html>
+  <section class="pagination">
+    <article>
+      <div class="pagination__wave">
+        <div class="pagination__wave-line"></div>
+        <div class="pagination__wave-line"></div>
+        <div class="pagination__wave-line"></div>
+        <div class="pagination__wave-line"></div>
+        <div class="pagination__wave-line"></div>
+        <div class="pagination__wave-line"></div>
+        <div class="pagination__wave-line"></div>
+        <div class="pagination__wave-line"></div>
+        <div class="pagination__wave-line"></div>
+        <div class="wave"></div>
+      </div>
+      <button id="add-greetings" class="add-greetings__button">Daugiau sveikinimų</button>
+    </article>
+  </section>
+</section>

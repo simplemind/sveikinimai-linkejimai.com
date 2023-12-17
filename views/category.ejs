@@ -1,24 +1,33 @@
 <% layout('layouts/boilerplate') -%>
-
-<h1>Category is <%= category %></h1>
-<sub>This is page number <%= page %></sub>
-
-<div>
-  <!-- Loop through categories and extract categoryName and orderNumber into a list -->
-  <h2>Categories</h2>
-  <ul>
-    <% categories.forEach(function(category){ %>
-    <li><%= category.categoryName %> - <%= category.orderNumber %></li>
+<hgroup class="headings">
+  <h1 class="headings__h1"><%= pageTags.pageHeadingH1 %></h1>
+  <p class="headings__subheading"><%= pageTags.pageSubheading %></p>
+</hgroup>
+<section class="content">
+  <section class="greetings-container">
+    <% greetings.forEach(function(greeting, index){ %>
+    <%# index is used to add page numbers to data-page attribute for 11th, 21st, 31st, etc greetings for when user loads a specific page %>
+    <article class="greeting" <% if ((index + 1) % 10 ===0) { %>data-page="<%= Math.floor((index + 1) / 10) + 1 %>" <% } %>>
+      <p class="greeting__text"><%= greeting.greeting %></p>
+      <div class="greeting__icon-container" style="display: none;"></div>
+    </article>
     <% }) %>
-  </ul>
-
-  <h2>Greetings</h2>
-  <ul>
-    <% greetings.forEach(function(greeting){ %>
-    <li><%= greeting.greeting %></li>
-    <% }) %>
-  </ul>
-
-</div>
-</body>
-</html>
+  </section>
+  <section class="pagination">
+    <article>
+      <div class="pagination__wave">
+        <div class="pagination__wave-line"></div>
+        <div class="pagination__wave-line"></div>
+        <div class="pagination__wave-line"></div>
+        <div class="pagination__wave-line"></div>
+        <div class="pagination__wave-line"></div>
+        <div class="pagination__wave-line"></div>
+        <div class="pagination__wave-line"></div>
+        <div class="pagination__wave-line"></div>
+        <div class="pagination__wave-line"></div>
+        <div class="wave"></div>
+      </div>
+      <button id="add-greetings" class="add-greetings__button">Daugiau sveikinimų</button>
+    </article>
+  </section>
+</section>

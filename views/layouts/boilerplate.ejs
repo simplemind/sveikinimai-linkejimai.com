@@ -2,12 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta n ame="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= pageTitle // Passing here from render() %></title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title><%= pageTags.pageTitle %></title>
+  <meta name="description" content="<%= pageTags.metaDescription %>" />
+  <meta name="keywords" content="<%= pageTags.metaKeywords %>" />
+
+  <meta name="author" content="karolis" />
+  <meta name="copyright" content="karolis" />
+  <meta http-equiv="Content-Language" content="lt" />
+  <meta name="robots" content="ALL" />
+  <meta name="revisit-after" content="14 days" />
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="#" type="image/x-icon">
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&family=Nunito:wght@300;400&family=Quicksand&display=swap" rel="stylesheet">
+  <!-- Font Awesome icons -->
+  <script src="https://kit.fontawesome.com/29d10d41d8.js" crossorigin="anonymous"></script>
+  <!-- Main css rules -->
+  <link rel="stylesheet" href="/stylesheets/main.css">
 </head>
 <body>
-  <%- include('../partials/header') -%>
-  <main><%- body -%></main>
-  <%- include('../partials/footer') -%>
+  <%# Top wave and logo within the header %>
+  <%- include('../partials/header.ejs') %>
+  <%# body variable will be replaced with the content of rendered ejs file e.g. home.ejs %>
+  <main class="main">
+    <%- body -%>
+    <%- include('../partials/side-menu.ejs') %>
+    <a class="menu-open-button" href="#"></a>
+  </main>
+  <%- include('../partials/modal-menu.ejs') %>
+  <%- include('../partials/footer.ejs') %>
 </body>
 </html>

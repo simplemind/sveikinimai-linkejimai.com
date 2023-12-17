@@ -8,6 +8,7 @@ const CategorySchema = new Schema({
   orderNumber: Number,
   pageTitle: String,
   pageHeadingH1: String,
+  pageSubheading: String,
   metaDescription: String,
   metaKeywords: String,
   onpageKeywords: String,
