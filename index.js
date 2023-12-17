@@ -41,6 +41,21 @@ app.set("view engine", "ejs");
 // This will make it possible to use partials for modularizing the code
 app.engine("ejs", ejsMate);
 
+// Middleware that assigns pageTags and rootUrl on every request without mutating the pageDefaultTags object
+app.use((req, res, next) => {
+  // Getting the root url for the page
+  const rootUrl = req.protocol + "://" + req.get("host");
+  // Adding rootUrl to res.locals to make it accessible in templates
+  res.locals.rootUrl = rootUrl;
+
+  // Creating a copy of the default pageTags object
+  // This ensures pageDefaultTags is not modified unlike cont pageTags = pageDefaultTags
+  const pageTags = Object.assign({}, pageDefaultTags);
+  // Assigning pageTags to res.locals so it can be accessed in all views
+  res.locals.pageTags = pageTags;
+  next();
+});
+
 // CONTROLLERS
 // Fetching categories
 // The object contains categoryTag (used in Urls) , categoryName, orderNumber, pageTitle, pageHeadingH1, subheading
@@ -109,8 +124,8 @@ async function updatePageTags(categoryTag, pageTags) {
 // #ToDo: Add functionality to load greetings based on the page parameter
 app.get("/", async (req, res) => {
   // Creating a copy of the default pageTags object
-  // This ensures pageDefaultTags is not modified unlike cont pageTags = pageDefaultTags
-  const pageTags = Object.assign({}, pageDefaultTags);
+  // Destructuring from res.locals that was assigned by middleware
+  const { pageTags } = res.locals;
   const currentCategory = pageTags.categoryTag;
 
   const page = req.query.puslapis || 1;
@@ -119,7 +134,7 @@ app.get("/", async (req, res) => {
   const numberOfPages = await getNumberOfPages(pageTags.categoryTag);
 
   // Getting the root url for the page
-  const rootUrl = req.protocol + "://" + req.get("host");
+  const { rootUrl } = res.locals;
 
   // Passing defaultCategory so it can be read by add-greetings.js
   res.render("home", { categories, greetings, rootUrl, pageTags, currentCategory, numberOfPages });
@@ -138,7 +153,7 @@ app.get("/proga/:currentCategory", async (req, res) => {
   const numberOfPages = await getNumberOfPages(pageTags.categoryTag);
 
   // Getting the root url for the page
-  const rootUrl = req.protocol + "://" + req.get("host");
+  const { rootUrl } = res.locals;
 
   res.render("category", { categories, greetings, rootUrl, pageTags, currentCategory, numberOfPages });
 });
@@ -149,6 +164,24 @@ app.get("/api/get-greetings/:category/:page?", async (req, res) => {
 
   const greetings = await getGreetings(category, page);
   res.json(greetings);
+});
+
+// Must be placed at the end of all routes
+//   matches all types of HTTP requests (GET, POST, PUT, DELETE, etc.) on all routes that are not matched by any other route handlers above
+// Runs a middleware function that creates an error and passes it to the next middleware function
+app.all("*", (req, res, next) => {
+  // This creates a new ExpressError object with a message of "Page not found"
+  //   and a status code of 404, and passes it to the next middleware in the stack.
+  next(new ExpressError("Page not found", 404));
+});
+
+//Error handling middleware
+app.use(function (err, req, res, next) {
+  const { statusCode = 500 } = err; // Destructuring from the error with default values in case not passed by the error
+  if (!err.message) err.message = "SOMETHING WENT WRONG";
+  // res.render("error"); //Renders error.ejs with err object passed through
+  res.status(statusCode).render("error", { err }); //Renders error.ejs with err object passed through
+  // send("OH BOY SOMETHING WENT WRONG");
 });
 
 // Listening on production for PORT. If not PORT then in development environment and use 3000

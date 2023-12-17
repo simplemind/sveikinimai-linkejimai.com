@@ -1,33 +1,40 @@
 <% layout('layouts/boilerplate') -%>
-<hgroup class="headings">
-  <h1 class="headings__h1"><%= pageTags.pageHeadingH1 %></h1>
-  <p class="headings__subheading"><%= pageTags.pageSubheading %></p>
-</hgroup>
-<section class="content">
-  <section class="greetings-container">
-    <% greetings.forEach(function(greeting, index){ %>
-    <%# index is used to add page numbers to data-page attribute for 11th, 21st, 31st, etc greetings for when user loads a specific page %>
-    <article class="greeting" <% if ((index + 1) % 10 ===0) { %>data-page="<%= Math.floor((index + 1) / 10) + 1 %>" <% } %>>
-      <p class="greeting__text"><%= greeting.greeting %></p>
-      <div class="greeting__icon-container" style="display: none;"></div>
-    </article>
-    <% }) %>
+<main class="main">
+  <%- include('./partials/side-menu.ejs') %>
+  <hgroup class="headings">
+    <h1 class="headings__h1"><%= pageTags.pageHeadingH1 %></h1>
+    <p class="headings__subheading"><%= pageTags.pageSubheading %></p>
+  </hgroup>
+  <section class="content">
+    <section class="greetings-container">
+      <% greetings.forEach(function(greeting, index){ %>
+      <%# index is used to add page numbers to data-page attribute for 11th, 21st, 31st, etc greetings for when user loads a specific page %>
+      <article class="greeting" <% if ((index + 1) % 10 ===0) { %>data-page="<%= Math.floor((index + 1) / 10) + 1 %>" <% } %>>
+        <p class="greeting__text"><%= greeting.greeting %></p>
+        <div class="greeting__icon-container" style="display: none;"></div>
+      </article>
+      <% }) %>
+    </section>
+    <section class="pagination">
+      <article>
+        <div class="pagination__wave">
+          <div class="pagination__wave-line"></div>
+          <div class="pagination__wave-line"></div>
+          <div class="pagination__wave-line"></div>
+          <div class="pagination__wave-line"></div>
+          <div class="pagination__wave-line"></div>
+          <div class="pagination__wave-line"></div>
+          <div class="pagination__wave-line"></div>
+          <div class="pagination__wave-line"></div>
+          <div class="pagination__wave-line"></div>
+          <div class="wave"></div>
+        </div>
+        <button id="add-greetings" class="add-greetings__button">Daugiau sveikinimų</button>
+      </article>
+    </section>
   </section>
-  <section class="pagination">
-    <article>
-      <div class="pagination__wave">
-        <div class="pagination__wave-line"></div>
-        <div class="pagination__wave-line"></div>
-        <div class="pagination__wave-line"></div>
-        <div class="pagination__wave-line"></div>
-        <div class="pagination__wave-line"></div>
-        <div class="pagination__wave-line"></div>
-        <div class="pagination__wave-line"></div>
-        <div class="pagination__wave-line"></div>
-        <div class="pagination__wave-line"></div>
-        <div class="wave"></div>
-      </div>
-      <button id="add-greetings" class="add-greetings__button">Daugiau sveikinimų</button>
-    </article>
-  </section>
-</section>
+  <a class="menu-open-button" href="#"></a>
+</main>
+<%- include('./partials/modal-menu.ejs') %>
+<script>window.currentCategory='<%= currentCategory // Passing into add-greetings.js %>'</script>
+<script>window.numberOfPages='<%= numberOfPages // Passing into add-greetings.js %>'</script>
