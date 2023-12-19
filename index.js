@@ -43,8 +43,9 @@ app.engine("ejs", ejsMate);
 
 // Middleware that assigns pageTags and rootUrl on every request without mutating the pageDefaultTags object
 app.use((req, res, next) => {
-  // Getting the root url for the page
-  const rootUrl = req.protocol + "://" + req.get("host");
+  // Constructing the rootUrl using req.get('host') and req.protocol
+  const rootUrl = new URL(`${req.protocol}://${req.get("host")}`);
+
   // Adding rootUrl to res.locals to make it accessible in templates
   res.locals.rootUrl = rootUrl;
 
@@ -158,6 +159,19 @@ app.get("/proga/:currentCategory", async (req, res) => {
   res.render("category", { categories, greetings, rootUrl, pageTags, currentCategory, numberOfPages });
 });
 
+// GDPR privacy policy page
+app.get("/privatumo-politika", async (req, res) => {
+  // Creating a copy of the default pageTags object
+  // Destructuring from res.locals that was assigned by middleware
+  const { pageTags } = res.locals;
+
+  // Getting the root url for the page
+  const { rootUrl } = res.locals;
+
+  // Passing defaultCategory so it can be read by add-greetings.js
+  res.render("privatumo-politika");
+});
+
 // API route for fetching greetings
 app.get("/api/get-greetings/:category/:page?", async (req, res) => {
   const { category, page } = req.params;
@@ -181,7 +195,6 @@ app.use(function (err, req, res, next) {
   if (!err.message) err.message = "SOMETHING WENT WRONG";
   // res.render("error"); //Renders error.ejs with err object passed through
   res.status(statusCode).render("error", { err }); //Renders error.ejs with err object passed through
-  // send("OH BOY SOMETHING WENT WRONG");
 });
 
 // Listening on production for PORT. If not PORT then in development environment and use 3000

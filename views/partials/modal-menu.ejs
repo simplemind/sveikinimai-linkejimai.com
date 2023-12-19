@@ -4,7 +4,7 @@
       <h3 class="modal-menu__heading">sveikinimų progos</h3>
       <ul class="modal-menu__list">
         <% categories.forEach(category => { %>
-        <li class="modal-menu__list-item"><a class="modal-menu__link" href="<%= rootUrl+"/proga/"+category.categoryTag %>"><%= category.categoryName %></a></li>
+        <li class="modal-menu__list-item"><a class="modal-menu__link" href="<%= rootUrl+"proga/"+category.categoryTag %>"><%= category.categoryName %></a></li>
         <% }); %>
       </ul>
     </div>

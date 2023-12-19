@@ -5,7 +5,7 @@ const pageDefaultTags = {
   pageTitle: "sveikinimai, gimtadienio sveikinimai, sveikinimai visoms progoms",
   pageHeadingH1: "Sveikinimai",
   pageSubheading:
-    "sveikinimai ir linkėjimai visoms progoms. Sveikinimų raktažodžiai: sveikinimai, gimtadienio sveikinimai, sveikinimai gimtadienio proga, sveikinimai jubiliejaus proga, sveikinimai su gimtadieniu. Sveikinimai ir linkėjimai suskirstyti į įvairiausiais kategorijas. Iš viso daugiau kaip 2000 sveikinimų",
+    "Sveikinimai ir linkėjimai visoms progoms. Sveikinimų raktažodžiai: gimtadienio sveikinimai, sveikinimai gimtadienio proga, sveikinimai jubiliejaus proga, su gimtadieniu. Sveikinimai ir linkėjimai suskirstyti į įvairiausiais kategorijas. Iš viso daugiau kaip 2000 sveikinimų",
   metaDescription: "sveikinimai, sveikinimai ir linkėjimai visoms progoms - sveikinimai-linkejimai.com",
   metaKeywords: "sveikinimai, gimtadienio sveikinimai, sveikinimai gimtadienio proga, sveikinimai jubiliejaus proga, sveikinimai su gimtadieniu",
 };

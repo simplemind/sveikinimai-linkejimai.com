@@ -2,7 +2,7 @@
   <h3 class="side-menu__heading">sveikinimų progos</h3>
   <ul class="side-menu__list">
     <% categories.forEach(category => { %>
-    <li><a class="side-menu__link" href="<%= rootUrl+"/proga/"+category.categoryTag %>"><%= category.categoryName %></a></li>
+    <li><a class="side-menu__link" href="<%= rootUrl+"proga/"+category.categoryTag %>"><%= category.categoryName %></a></li>
     <% }); %>
   </ul>
 </nav>

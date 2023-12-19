@@ -1,17 +1,15 @@
 <% layout('layouts/boilerplate') -%>
-<main class="main">
-  <hgroup class="headings">
+<main class="main main--single-column">
+  <hgroup class="headings headings--single-column">
     <h1 class="headings__h1">Tinklapio klaida</h1>
     <p class="headings__subheading"><%= `${err.statusCode}  - ${err.message}` %></p>
   </hgroup>
-  <section class="content" style="grid-column: 2 / 3">
-    <section class="greetings-container">
-      <article class="greeting">
-        <p class="greeting__text">Tinklapio adiministratorius peržvelgs klaidą.
-          Atisprašome už nesklandumą</p>
-        <%# #DEV. Replace console error logging to winston or Bunyan logging into a file %>
-        <%= console.log(err.stack); %>
-      </article>
+  <section class="content content--single-column">
+    <section class="text-container">
+      <p class="text__p">Tinklapio adiministratorius peržvelgs klaidą.
+        Atisprašome už nesklandumą</p>
+      <%# #DEV. Replace console error logging to winston or Bunyan logging into a file %>
+      <%= console.log(err.stack); %>
     </section>
   </section>
 </main>

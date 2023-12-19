@@ -216,6 +216,8 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
+  /* To fill remaining space and push footer to the bottom on low content pages */
+  flex-grow: 1;
 
   max-width: 1000px;
   /* 0 at 360vs and 50px at 800vw */
@@ -223,6 +225,11 @@ body {
   padding: 0 20px;
 }
 
+/* A single column layout modifier for static pages */
+.main--single-column {
+  margin-left: 10px;
+  margin-right: 10px;
+}
 
 /* #######| 3.1. Headings |####### */
 .headings {
@@ -240,6 +247,10 @@ body {
   color: var(--neutral-color);
 }
 
+.headings__h1 {
+  padding-left: 10px;
+}
+
 .headings__subheading {
   /* Box model stuff */
   height: 0;
@@ -255,6 +266,7 @@ body {
   color: var(--neutral-color-dark);
   font-size: var(--text-regular);
 }
+
 
 /* #######| 3.2. Side menu (left) |####### */
 .side-menu {
@@ -520,7 +532,6 @@ body {
 /* #######| 3.4.1. Greetings container |####### */
 .greetings-container {
   display: grid;
-
   /* Two columns once width is above 800px */
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
@@ -595,6 +606,7 @@ body {
 .greeting__mail-icon {
   background-image: url(../assets/mail-icon.svg);
 }
+
 
 /* #######| 3.4.2. Pagination container |####### */
 .pagination {
@@ -696,6 +708,59 @@ body {
   animation-delay: 0.9s;
 }
 
+/* #######| 3.4.3. Text container |####### */
+/* Alternative to greetings container. Used on static pages */
+.text-container {
+  display: flex;
+  flex-direction: column;
+
+  background: #fff;
+  padding: 20px;
+  min-height: clamp(100%, 30vh, 100px);
+  ;
+
+  /* Shadow. Neutral */
+  border: 1px solid var(--primary-color);
+  border-radius: 10px;
+  box-shadow: 0px 4px 24px rgba(101, 136, 147, 0.15);
+}
+
+.text-container__h3 {
+  /* Text. Regular */
+  font-family: var(--main-font);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 2.0rem;
+  line-height: 150%;
+  color: var(--neutral-dark-color);
+
+}
+
+.text-container__p {
+  /* Adding a space between paragraphs */
+  padding-bottom: 1.5rem;
+
+  /* Text. Regular */
+  font-family: var(--main-font);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 150%;
+  color: var(--neutral-dark-color);
+  white-space: pre-line;
+}
+
+.text-container__ul {
+  padding-left: 1.5rem;
+  padding-bottom: 1.5rem;
+
+  font-family: var(--main-font);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 150%;
+  color: var(--neutral-dark-color);
+}
 
 /* #######| 4. Footer |####### */
 .footer {
@@ -705,19 +770,31 @@ body {
 
   /* Styling */
   line-height: 150%;
-  font-size: 1.1rem;
+  font-size: clamp(1.1rem, 2vw, 20px);
   color: var(--neutral-color);
 }
 
 .footer__container {
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
 
   margin: 0 auto;
   max-width: 1000px;
   padding: 0 40px;
 }
+
+/* generate two classes within footer__container flexbox where one is on the left of the footer and another on the right */
+.footer__link {
+  text-decoration: none;
+  color: var(--neutral-color);
+}
+
+.footer__link:hover {
+  color: var(--neutral-color-dark);
+  text-decoration: underline;
+}
+
 
 /* #######| 5. Animations |####### */
 /* Button rotations */
@@ -785,7 +862,7 @@ body {
     height: 50px;
   }
 
-  /* Adding space in the menu for larger button */
+  /* Adding space in the menu for a larger button */
   .modal-menu__list {
     /* padding-bottom: 76px; */
   }
@@ -796,6 +873,7 @@ body {
 }
 
 @media (min-width: 800px) {
+
   .headings__h1 {
     font-size: 4.4rem;
   }
@@ -816,11 +894,27 @@ body {
     margin: 0 auto;
   }
 
+  .main--single-column {
+    grid-template-columns: 1fr;
+    /* Calc as per non-media-query main class  */
+    /* then 10vw from left and right */
+    margin: calc(11.36vw + -40.91px) 10vw 0 10vw;
+
+  }
+
   /*  */
   .headings {
     /* To align h1 just below the logo */
     margin-top: calc(4.17vw + 6.67px);
     margin-left: calc(284px + 23px);
+  }
+
+  .headings--single-column {
+    /* Removing margin from left */
+    /* as there is no side menu */
+    margin-left: 0;
+    /* Bringing heading up as there is enough whitespace already */
+    margin-top: 10px;
   }
 
   .headings__subheading {
@@ -841,13 +935,29 @@ body {
     margin: 10px 0 0 23px;
   }
 
+  .content--single-column {
+    margin: 10px 0 0 0;
+  }
+
   .greeting__text {
+    font-size: 1.8rem;
+  }
+
+  .text-container__h3 {
+    font-size: 2.4rem;
+  }
+
+  .text-container__p {
     font-size: 1.8rem;
   }
 
   /* Hiding on large screens */
   .menu-open-button {
     opacity: 0;
+  }
+
+  .footer__container {
+    padding: 0 20px 0 70px;
   }
 }
 
@@ -865,6 +975,14 @@ body {
   }
 
   .greeting__text {
+    font-size: 2rem;
+  }
+
+  .text-container__h3 {
+    font-size: 2.8rem;
+  }
+
+  .text-container__p {
     font-size: 2rem;
   }
 }
