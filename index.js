@@ -8,6 +8,7 @@ const Category = require("./models/categoriesModel");
 const Greeting = require("./models/greetingsModel");
 // DB_URL parameter from Production or local mongodb Url otherwise
 const dbUrl = process.env.DB_URL || "mongodb://127.0.0.1:27017/dbSveikinimai";
+// const dbUrl = "mongodb+srv://adminuser:Adminpass01@clustersveikinimai.uu5tqud.mongodb.net/dbSveikinimai";
 // Importing an extended Error class for handling Express errors
 const ExpressError = require("./utilities/ExpressError");
 const ejsMate = require("ejs-mate"); //Importing ejs-mate npm package
@@ -18,6 +19,11 @@ const pageDefaultTags = require("./utilities/defaults"); //Importing default val
 mongoose.connect(dbUrl).catch((error) => {
   handleError(error);
 });
+
+function handleError(error, res) {
+  console.error(error);
+  res.status(500).render("error", { error });
+}
 
 const db = mongoose.connection; //Shortening so we can reference db instead of mongoose.connection
 db.on("error", console.error.bind(console, "connection error:"));
