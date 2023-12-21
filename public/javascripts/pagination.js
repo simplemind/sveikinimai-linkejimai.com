@@ -104,14 +104,15 @@ async function loadContentAndAnimations() {
   toggleElementClass(true, addGreetingsButton, "add-greetings__button--hidden");
   // Showing the wave
   toggleElementClass(true, paginationWave, "pagination__wave--show");
-  // Adding a delay to show the wave
-  await new Promise((resolve) => setTimeout(resolve, 1000));
 
+  // A promise that fetches greetings and finishes no earlier than after 1 second
   currentPage++;
-
+  // Wait for at least 1 second and fetch greetings simultaneously
+  const delayPromise = new Promise((resolve) => setTimeout(resolve, 1000));
   // Fetching greetings
-  const response = await fetch(`/api/get-greetings/${currentCategory}/${currentPage}`);
-  const greetingsArrayOfObjects = await response.json();
+  const fetchPromise = fetch(`/api/get-greetings/${currentCategory}/${currentPage}`).then((response) => response.json());
+  // Wait for both promises to resolve
+  const [_, greetingsArrayOfObjects] = await Promise.all([delayPromise, fetchPromise]);
 
   // Adding greetings
   addGreetings(greetingsArrayOfObjects, contentContainer, currentPage);
