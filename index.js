@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== "production") {
+  // if we are in development require the dotenv package
+  require("dotenv").config();
+}
 const express = require("express");
 // Requiring NodeJs path module so I can set up an absolute path for views directory
 const path = require("path");
