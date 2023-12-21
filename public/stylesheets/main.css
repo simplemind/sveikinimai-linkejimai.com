@@ -898,7 +898,8 @@ body {
     grid-template-columns: 1fr;
     /* Calc as per non-media-query main class  */
     /* then 10vw from left and right */
-    margin: calc(11.36vw + -40.91px) 10vw 0 10vw;
+    margin-top: calc(8.33vw - 6.67px);
+    /* margin: calc(11.36vw - 40.91px) 10vw 0 10vw; */
 
   }
 

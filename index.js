@@ -15,21 +15,24 @@ const ejsMate = require("ejs-mate"); //Importing ejs-mate npm package
 // For generating homepage greetings
 const pageDefaultTags = require("./utilities/defaults"); //Importing default values for the page
 
-// Connecting to mongodb with mongoose
-mongoose.connect(dbUrl).catch((error) => {
-  handleError(error);
-});
-
 function handleError(error, res) {
   console.error(error);
   res.status(500).render("error", { error });
 }
 
-const db = mongoose.connection; //Shortening so we can reference db instead of mongoose.connection
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => {
-  console.log("Database connected"); //Prints to terminal console if connected to the database
+// Connecting to mongodb with mongoose
+mongoose.connect(dbUrl).catch((error) => {
+  handleError(error);
 });
+
+const connectDb = async () => {
+  try {
+    const conn = await mongoose.connect(dbUrl);
+    console.log(`MongoDB connected: ${conn.connection.host}`);
+  } catch (error) {
+    handleError(error);
+  }
+};
 
 // Getting an instance of Express
 const app = express();
