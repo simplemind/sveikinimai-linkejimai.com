@@ -477,11 +477,11 @@ body {
 }
 
 .modal-menu__list-item {
-  line-height: 130%;
+  line-height: 150%;
 }
 
 .modal-menu__link {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-family: var(--main-font);
   text-decoration: none;
   color: var(--neutral-very-dark-color);
@@ -563,7 +563,7 @@ body {
   font-family: var(--main-font);
   font-style: normal;
   font-weight: 400;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   line-height: 150%;
   color: var(--neutral-dark-color);
   white-space: pre-line;
