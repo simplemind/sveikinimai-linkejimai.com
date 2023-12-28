@@ -99,7 +99,8 @@ video {
   --semantic-color-help: #6454c0;
 
   /* Text styles */
-  --main-font: "Baloo 2", cursive;
+  --font-family__main: Nunito, Quicksand, "Baloo 2";
+  --font-family__logo: "Baloo 2", Nunito, Quicksand;
   --text-regular: clamp(10px, calc(0.63vw + 7.75px), 1.4rem);
   /*  */
 
@@ -143,7 +144,7 @@ body {
   /* 1.6 * 10px = 16px */
   font-size: 1.6rem;
   /* Main font and heading font */
-  font-family: var(--main-font);
+  font-family: var(--font-family__main);
 }
 
 
@@ -200,6 +201,7 @@ body {
 
   height: 100%;
 
+  font-family: var(--font-family__logo);
   font-size: clamp(1.8rem, calc(2.73vw + 8.18px), 3.6rem);
   font-weight: 300;
   line-height: clamp(1.8rem, calc(4.09vw + 3.27px), 3.6rem);
@@ -296,7 +298,7 @@ body {
   font-size: 2.5rem;
   text-align: center;
 
-  transform: translate(0%, 20%) rotate(-4deg);
+  transform: translate(0%, 0%) rotate(-3deg);
 
   box-shadow: var(--shadow-neutral-dark);
 }
@@ -313,7 +315,7 @@ body {
   font-size: 1.8rem;
   line-height: 130%;
   text-decoration: none;
-  font-family: var(--main-font);
+  font-family: var(--font-family__main);
   color: var(--neutral-very-dark-color);
 
   transition: color 0.05s ease-in-out;
@@ -452,7 +454,7 @@ body {
   text-align: center;
 
   /* -25% vertical to align heading on the edge of BG image */
-  transform: translate(0%, -25%) rotate(-4deg);
+  transform: translate(0%, -25%) rotate(-3deg);
 
   box-shadow: var(--shadow-neutral-dark);
 }
@@ -482,7 +484,7 @@ body {
 
 .modal-menu__link {
   font-size: 1.8rem;
-  font-family: var(--main-font);
+  font-family: var(--font-family__main);
   text-decoration: none;
   color: var(--neutral-very-dark-color);
 
@@ -560,7 +562,7 @@ body {
 
 .greeting__text {
   /* Text. Regular */
-  font-family: var(--main-font);
+  font-family: var(--font-family__main);
   font-style: normal;
   font-weight: 400;
   font-size: 1.8rem;
@@ -727,7 +729,7 @@ body {
 
 .text-container__h3 {
   /* Text. Regular */
-  font-family: var(--main-font);
+  font-family: var(--font-family__main);
   font-style: normal;
   font-weight: 400;
   font-size: 2.0rem;
@@ -741,7 +743,7 @@ body {
   padding-bottom: 1.5rem;
 
   /* Text. Regular */
-  font-family: var(--main-font);
+  font-family: var(--font-family__main);
   font-style: normal;
   font-weight: 400;
   font-size: 1.4rem;
@@ -754,7 +756,7 @@ body {
   padding-left: 1.5rem;
   padding-bottom: 1.5rem;
 
-  font-family: var(--main-font);
+  font-family: var(--font-family__main);
   font-style: normal;
   font-weight: 400;
   font-size: 1.4rem;
