@@ -4,6 +4,7 @@ const contentContainer = document.querySelector(".greetings-container");
 const footer = document.querySelector(".footer");
 const addGreetingsButton = document.getElementById("add-greetings");
 const paginationWave = document.querySelector(".pagination__wave");
+const pagination__end = document.querySelector(".pagination__end");
 
 const url = new URL(window.location.href);
 let currentPage = Number(url.searchParams.get("puslapis")) || 1;
@@ -45,7 +46,10 @@ if (numberOfPages > currentPage) {
 }
 // Hide the add greetings button if there is just one page
 if (numberOfPages === 1) {
+  // Hiding the addGreetingsButton
   toggleElementClass(true, addGreetingsButton, "add-greetings__button--hidden");
+  // Adding word "Pabaiga" at the end of all greetings
+  toggleElementClass(true, pagination__end, "pagination__end--show");
 }
 
 // Adds greetings from array to the page
@@ -134,6 +138,8 @@ async function loadContentAndAnimations() {
     addGreetingsObserver.unobserve(footer);
     // Hide the addGreetingsButton
     toggleElementClass(true, addGreetingsButton, "add-greetings__button--hidden");
+    // Adding word "Pabaiga" at the end of all greetings
+    toggleElementClass(true, pagination__end, "pagination__end--show");
   }
   // Setting back to false to allow the function to be called again
   isLoading = false;

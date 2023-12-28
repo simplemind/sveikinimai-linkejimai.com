@@ -101,7 +101,7 @@ video {
   /* Text styles */
   --font-family__main: Nunito, Quicksand, "Baloo 2";
   --font-family__logo: "Baloo 2", Nunito, Quicksand;
-  --text-regular: clamp(10px, calc(0.63vw + 7.75px), 1.4rem);
+  --font-size__regular: clamp(1.8rem, 2vw, 2.4rem);
   /*  */
 
   /* 1D97E2 with 5% alpha*/
@@ -266,7 +266,7 @@ body {
 
   line-height: 140%;
   color: var(--neutral-color-dark);
-  font-size: var(--text-regular);
+  font-size: clamp(10px, calc(0.63vw + 7.75px), 1.4rem);
 }
 
 
@@ -565,7 +565,7 @@ body {
   font-family: var(--font-family__main);
   font-style: normal;
   font-weight: 400;
-  font-size: 1.8rem;
+  font-size: var(--font-size__regular);
   line-height: 150%;
   color: var(--neutral-dark-color);
   white-space: pre-line;
@@ -708,6 +708,20 @@ body {
 
 .pagination__wave-line:nth-child(10) {
   animation-delay: 0.9s;
+}
+
+/* Word "Pabaiga" after all greetings are fetched */
+.pagination__end {
+  visibility: hidden;
+
+  font-style: var(--font-family__main);
+  font-weight: 400;
+  font-size: var(--font-size__regular);
+}
+
+.pagination__end--show {
+  /* display: block; */
+  visibility: visible;
 }
 
 /* #######| 3.4.3. Text container |####### */
@@ -942,10 +956,6 @@ body {
     margin: 10px 0 0 0;
   }
 
-  .greeting__text {
-    font-size: 1.8rem;
-  }
-
   .text-container__h3 {
     font-size: 2.4rem;
   }
@@ -978,7 +988,7 @@ body {
   }
 
   .greeting__text {
-    font-size: 2rem;
+    /* font-size: 2rem; */
   }
 
   .text-container__h3 {
