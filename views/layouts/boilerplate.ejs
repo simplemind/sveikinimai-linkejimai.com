@@ -25,11 +25,10 @@
   <script src="https://kit.fontawesome.com/29d10d41d8.js" crossorigin="anonymous"></script>
   <!-- Main css rules -->
   <link rel="stylesheet" href="/stylesheets/main.css">
-  <% if (process.env.NODE_ENV === 'production') { %>
+  <% if (environment === 'production') { %>
   <%- include('../partials/google-adsense.ejs') %>
   <%- include('../partials/google-analytics.ejs') %>
   <% } %>
-  <%= console.log(`NODE_ENV is:${process.env.NODE_ENV}`); %>
 </head>
 <body>
   <%# Top wave and logo within the header %>

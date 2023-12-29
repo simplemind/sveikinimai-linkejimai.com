@@ -54,7 +54,8 @@ app.set("view engine", "ejs");
 // This will make it possible to use partials for modularizing the code
 app.engine("ejs", ejsMate);
 
-// Middleware that assigns pageTags and rootUrl on every request without mutating the pageDefaultTags object
+// Middleware that run on every request.
+//  assigns pageTags and rootUrl without mutating the pageDefaultTags object
 app.use((req, res, next) => {
   // Constructing the rootUrl using req.get('host') and req.protocol
   const rootUrl = new URL(`${req.protocol}://${req.get("host")}`);
@@ -67,6 +68,9 @@ app.use((req, res, next) => {
   const pageTags = Object.assign({}, pageDefaultTags);
   // Assigning pageTags to res.locals so it can be accessed in all views
   res.locals.pageTags = pageTags;
+
+  // Get environment from process.env.NODE_ENV
+  res.locals.environment = process.env.NODE_ENV;
   next();
 });
 
@@ -147,11 +151,11 @@ app.get("/", async (req, res) => {
   const greetings = await getGreetings(pageTags.categoryTag, page, true);
   const numberOfPages = await getNumberOfPages(pageTags.categoryTag);
 
-  // Getting the root url for the page
-  const { rootUrl } = res.locals;
+  // Getting the root url for the page and environment from res.locals
+  const { rootUrl, environment } = res.locals;
 
   // Passing defaultCategory so it can be read by add-greetings.js
-  res.render("home", { categories, greetings, rootUrl, pageTags, currentCategory, numberOfPages });
+  res.render("home", { environment, categories, greetings, rootUrl, pageTags, currentCategory, numberOfPages });
 });
 
 // Page for selected category
@@ -166,10 +170,10 @@ app.get("/proga/:currentCategory", async (req, res) => {
   const greetings = await getGreetings(pageTags.categoryTag, page, true);
   const numberOfPages = await getNumberOfPages(pageTags.categoryTag);
 
-  // Getting the root url for the page
-  const { rootUrl } = res.locals;
+  // Getting the root url for the page and environment from res.locals
+  const { rootUrl, environment } = res.locals;
 
-  res.render("category", { categories, greetings, rootUrl, pageTags, currentCategory, numberOfPages });
+  res.render("category", { environment, categories, greetings, rootUrl, pageTags, currentCategory, numberOfPages });
 });
 
 // GDPR privacy policy page
