@@ -70,6 +70,7 @@ app.use((req, res, next) => {
   res.locals.pageTags = pageTags;
 
   // Get environment from process.env.NODE_ENV
+  // console.log(process.env.NODE_ENV);
   res.locals.environment = process.env.NODE_ENV;
   next();
 });
@@ -100,7 +101,7 @@ async function getGreetings(categoryTag, page = 1, allFromFirst = false) {
 
   // Fetches greetings from the database with a specified categoryTag
   const arrayOfGreetingObjects = await Greeting.find({ categoryTags: { $in: [categoryTag] } })
-    .sort({ _id: -1 })
+    .sort({ greetingOrderId: -1 })
     .skip(skip)
     .limit(limit);
 
