@@ -30,6 +30,9 @@
   <%- include('../partials/google-analytics.ejs') %>
   <% } %>
   <%= //console.log(`Environment is: ${environment}`) %>
+  <%# Deferred scripts to load after parsing the page %>
+  <script defer src="/javascripts/modal-menu.js"></script>
+  <script defer src="/javascripts/pagination.js"></script>
 </head>
 <body>
   <%# Top wave and logo within the header %>

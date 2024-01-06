@@ -114,7 +114,7 @@ async function loadContentAndAnimations() {
   // Wait for at least 1 second and fetch greetings simultaneously
   const delayPromise = new Promise((resolve) => setTimeout(resolve, 1000));
   // Fetching greetings
-  const fetchPromise = fetch(`/api/get-greetings/${currentCategory}/${currentPage}`).then((response) => response.json());
+  const fetchPromise = await fetch(`/api/get-greetings/${currentCategory}/${currentPage}`).then((response) => response.json());
   // Wait for both promises to resolve
   const [_, greetingsArrayOfObjects] = await Promise.all([delayPromise, fetchPromise]);
 
