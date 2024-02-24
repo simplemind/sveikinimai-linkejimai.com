@@ -11,12 +11,12 @@
 // };
 // Tags for an ocassion
 const pageDefaultTags = {
-  categoryTag: "romantiski", //For homepage
-  pageTitle: "valentino sveikinimai, valentino dienos sveikinimai, valentino",
-  pageHeadingH1: "Romantiški sveikinimai",
-  pageSubheading: "Valentino sveikinimai, romantiški, valentino dienos sveikinimai, meilės palinkėjimai",
-  metaDescription: "valentino sveikinimai, romantiški, valentino dienos sveikinimai",
-  metaKeywords: "valentino sveikinimai, romantiški, valentino dienos sveikinimai, valentino dienos linkėjimai",
+  categoryTag: "moters-dienai", //For homepage
+  pageTitle: "moters dienos sveikinimai, sveikinimai kovo 8, moters diena",
+  pageHeadingH1: "Moterų dienos sveikinimai",
+  pageSubheading: "Moters dienos sveikinimai, su kovo 8-ąja, kovo 8-osios sveikinimai ",
+  metaDescription: "moters dienos, su kovo 8",
+  metaKeywords: "moters dienos sveikinimai, sveikinimai kovo 8, su moters diena, sveikinimai su kovo 8",
 };
 
 module.exports = pageDefaultTags;
