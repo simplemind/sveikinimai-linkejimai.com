@@ -102,6 +102,7 @@ video {
   --font-family__main: Nunito, Quicksand, "Baloo 2";
   --font-family__logo: "Baloo 2", Nunito, Quicksand;
   --font-size__regular: clamp(1.8rem, 2vw, 2.4rem);
+  --line-height__regular: clamp(2.1rem, 2.35vw, 2.8rem);
   /*  */
 
   /* 1D97E2 with 5% alpha*/
@@ -312,7 +313,7 @@ body {
 }
 
 .side-menu__link {
-  font-size: 1.8rem;
+  font-size: var(--font-size__regular);
   line-height: 130%;
   text-decoration: none;
   font-family: var(--font-family__main);
@@ -483,7 +484,9 @@ body {
 }
 
 .modal-menu__link {
-  font-size: 1.8rem;
+  /* font-size: 1.8rem; */
+  font-size: var(--font-size__regular);
+  line-height: var(--line-height__regular);
   font-family: var(--font-family__main);
   text-decoration: none;
   color: var(--neutral-very-dark-color);
@@ -944,10 +947,6 @@ body {
     align-items: center;
   }
 
-  .side-menu__link {
-    font-size: 1.8rem;
-  }
-
   .content {
     margin: 10px 0 0 23px;
   }
@@ -981,10 +980,6 @@ body {
 
   .headings__subheading {
     font-size: 1.6rem;
-  }
-
-  .side-menu__link {
-    font-size: 2rem;
   }
 
   .greeting__text {

@@ -11,12 +11,12 @@
 // };
 // Tags for an ocassion
 const pageDefaultTags = {
-  categoryTag: "moters-dienai", //For homepage
-  pageTitle: "moters dienos sveikinimai, sveikinimai kovo 8, moters diena",
-  pageHeadingH1: "Moterų dienos sveikinimai",
-  pageSubheading: "Moters dienos sveikinimai, su kovo 8-ąja, kovo 8-osios sveikinimai ",
-  metaDescription: "moters dienos, su kovo 8",
-  metaKeywords: "moters dienos sveikinimai, sveikinimai kovo 8, su moters diena, sveikinimai su kovo 8",
+  categoryTag: "velykiniai", //For homepage
+  pageTitle: "sveikinimai velykoms, velyku, velykiniai sveikinimai",
+  pageHeadingH1: "Sveikinimai Velykoms",
+  pageSubheading: "Sveikinimai Velykoms, Velykiniai sveikinimai, Velykų linkėjimai",
+  metaDescription: "sveikinimai velykoms, velykiniai sveikinimai, velyku",
+  metaKeywords: "sveikinimai velykoms, velyku, velykiniai sveikinimai, velykos, linkėjimai velykų proga, palinkėjimai velykom",
 };
 
 module.exports = pageDefaultTags;
