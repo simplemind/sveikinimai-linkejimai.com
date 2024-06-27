@@ -11,7 +11,8 @@ const mongoose = require("mongoose"); //Requiring mongoose
 const Category = require("./models/categoriesModel");
 const Greeting = require("./models/greetingsModel");
 // DB_URL parameter from Production or local mongodb Url otherwise
-const dbUrl = process.env.DB_URL || "mongodb://127.0.0.1:27017/dbSveikinimai";
+const dbUrl = "mongodb+srv://adminuser:Adminpass01@clustersveikinimai.uu5tqud.mongodb.net/dbSveikinimai";
+// const dbUrl = process.env.DB_URL || "mongodb://127.0.0.1:27017/dbSveikinimai";
 // const dbUrl = "mongodb+srv://adminuser:Adminpass01@clustersveikinimai.uu5tqud.mongodb.net/dbSveikinimai";
 // Importing an extended Error class for handling Express errors
 const ExpressError = require("./utilities/ExpressError");
@@ -25,18 +26,20 @@ function handleError(error, res) {
 }
 
 // Connecting to mongodb with mongoose
-mongoose.connect(dbUrl).catch((error) => {
-  handleError(error);
-});
-
+// mongoose.connect(dbUrl).catch((error) => {
+//   handleError(error);
+// });
 const connectDb = async () => {
   try {
     const conn = await mongoose.connect(dbUrl);
     console.log(`MongoDB connected: ${conn.connection.host}`);
+    return conn;
   } catch (error) {
     handleError(error);
   }
 };
+// Call the function to connect to MongoDB
+connectDb();
 
 // Getting an instance of Express
 const app = express();
