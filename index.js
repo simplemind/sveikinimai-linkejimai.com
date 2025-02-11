@@ -201,6 +201,100 @@ app.get("/api/get-greetings/:category/:page?", async (req, res) => {
   res.json(greetings);
 });
 
+// sitemap.xml route
+app.get("/sitemap.xml", (req, res) => {
+  // Getting the root url from res.locals
+  const { rootUrl } = res.locals;
+
+  // Start XML content
+  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+
+  xml += `<url>
+          <loc>https://www.sveikinimai-linkejimai.com/</loc>
+          <priority>1.0</priority>
+        </url>
+        <url>
+          <loc>https://www.sveikinimai-linkejimai.com/proga/gimtadienio</loc>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.sveikinimai-linkejimai.com/proga/jubiliejaus</loc>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.sveikinimai-linkejimai.com/proga/romantiski</loc>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.sveikinimai-linkejimai.com/proga/draugams</loc>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.sveikinimai-linkejimai.com/proga/vestuviu</loc>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.sveikinimai-linkejimai.com/proga/naujagimio</loc>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.sveikinimai-linkejimai.com/proga/krikstynu</loc>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.sveikinimai-linkejimai.com/proga/mokykliniai</loc>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.sveikinimai-linkejimai.com/proga/velykiniai</loc>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.sveikinimai-linkejimai.com/proga/vardadienio</loc>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.sveikinimai-linkejimai.com/proga/joninem</loc>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.sveikinimai-linkejimai.com/proga/moters-dienai</loc>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.sveikinimai-linkejimai.com/proga/mamos-dienai</loc>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.sveikinimai-linkejimai.com/proga/tecio-dienai</loc>
+         <priority>0.8</priority>
+          </url>
+        <url>
+          <loc>https://www.sveikinimai-linkejimai.com/proga/naujametiniai</loc>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.sveikinimai-linkejimai.com/proga/kalediniai</loc>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.sveikinimai-linkejimai.com/proga/kuciu</loc>
+          <priority>0.8</priority>
+        </url>
+        <url>
+          <loc>https://www.sveikinimai-linkejimai.com/privatumo-politika</loc>
+          <priority>1.0</priority>
+        </url>`;
+
+  // Close XML
+  xml += "</urlset>";
+
+  // Set content type to XML
+  res.header("Content-Type", "application/xml");
+  res.send(xml);
+});
+
 // Must be placed at the end of all routes
 //   matches all types of HTTP requests (GET, POST, PUT, DELETE, etc.) on all routes that are not matched by any other route handlers above
 // Runs a middleware function that creates an error and passes it to the next middleware function
