@@ -19,13 +19,15 @@
   <!-- Favicon -->
   <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
   <!-- Google fonts -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Baloo+2&family=Nunito:wght@300;400&family=Quicksand&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&family=Nunito:wght@300;400&family=Quicksand&display=swap" rel="stylesheet">
   <!-- Font Awesome icons -->
-  <script src="https://kit.fontawesome.com/29d10d41d8.js" crossorigin="anonymous"></script>
+  <script defer src="https://kit.fontawesome.com/29d10d41d8.js" crossorigin="anonymous"></script>
   <!-- Main css rules -->
-  <link rel="stylesheet" href="/stylesheets/main.css">
+  <link rel="preload" href="/stylesheets/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+
   <% if (environment === 'production') { %>
   <%- include('../partials/google-adsense.ejs') %>
   <%- include('../partials/google-analytics.ejs') %>

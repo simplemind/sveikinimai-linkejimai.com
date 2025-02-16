@@ -284,7 +284,7 @@ app.get("/sitemap.xml", (req, res) => {
         </url>
         <url>
           <loc>https://www.sveikinimai-linkejimai.com/privatumo-politika</loc>
-          <priority>1.0</priority>
+          <priority>0.5</priority>
         </url>`;
 
   // Close XML
