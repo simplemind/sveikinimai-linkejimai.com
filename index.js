@@ -19,6 +19,7 @@ const ExpressError = require("./utilities/ExpressError");
 const ejsMate = require("ejs-mate"); //Importing ejs-mate npm package
 // For generating homepage greetings
 const pageDefaultTags = require("./utilities/defaults"); //Importing default values for the page
+const helmet = require("helmet"); //Importing helmet for managing security headers
 
 function handleError(error, res) {
   console.error(error);
@@ -77,6 +78,39 @@ app.use((req, res, next) => {
   res.locals.environment = process.env.NODE_ENV;
   next();
 });
+
+// Calling middleware with Helmet
+const scriptSrcUrls = [
+  "https://kit.fontawesome.com/",
+  "*.fontawesome.com",
+  "*.google-analytics.com",
+  "https://www.googletagmanager.com",
+  "https://pagead2.googlesyndication.com",
+  "*.google.com",
+  "*.adtrafficquality.google",
+];
+const styleSrcUrls = ["https://kit-free.fontawesome.com/", "https://fonts.googleapis.com/", "https://use.fontawesome.com/"];
+const connectSrcUrls = ["https://ka-f.fontawesome.com/"];
+const fontSrcUrls = ["https://fonts.gstatic.com/", "https://ka-f.fontawesome.com/"];
+
+//Calling middleware with helmet
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: [],
+      connectSrc: ["'self'", ...connectSrcUrls],
+      scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls], // <script> elements & inline <script> blocks
+      scriptSrcAttr: ["'unsafe-inline'", "'self'"], // For inline event handlers
+      styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls], // CSS files
+      workerSrc: ["'self'", "blob:"],
+      objectSrc: [],
+      imgSrc: ["'self'", "blob:", "data:"],
+      fontSrc: ["'self'", ...fontSrcUrls],
+      mediaSrc: [],
+      childSrc: ["blob:"], // Allow/Block loading other web apps inside the site
+    },
+  })
+);
 
 // CONTROLLERS
 // Fetching categories
