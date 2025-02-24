@@ -28,8 +28,8 @@
   <link rel="preload" href="/stylesheets/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
   <% if (environment === 'production') { %>
-  <%- include('../partials/google-adsense.ejs') %>
   <%- include('../partials/google-analytics.ejs') %>
+  <%#- include('../partials/google-adsense.ejs') %>
   <% } %>
   <%= //console.log(`Environment is: ${environment}`) %>
   <%# Deferred scripts to load after parsing the page %>

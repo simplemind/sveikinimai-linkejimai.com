@@ -82,31 +82,33 @@ app.use((req, res, next) => {
 // Setting CSP rules for Helmet
 const childSrcUrls=["*.googlesyndication.com", "*.adtrafficquality.google"];
 const connectSrcUrls=[
-  "https://ka-f.fontawesome.com",
-  "https://stats.g.doubleclick.net",
-  "https://www.google-analytics.com",
-  "https://fundingchoicesmessages.google.com",
-  "*.adtrafficquality.google",
-  "https://csi.gstatic.com"
-];
-const fontSrcUrls=["https://fonts.gstatic.com", "https://ka-f.fontawesome.com"];
-const imgSrcUrls=[
-  "https://stats.g.doubleclick.net",
-  "https://www.google.co.uk",
-  "https://www.google-analytics.com",
-  "*.adtrafficquality.google",
-  "https://csi.gstatic.com"
-];
-const scriptSrcUrls=[
-  "https://kit.fontawesome.com/",
   "*.fontawesome.com",
+  "*.doubleclick.net",
   "*.google-analytics.com",
-  "https://www.googletagmanager.com",
-  "https://pagead2.googlesyndication.com",
   "*.google.com",
   "*.adtrafficquality.google",
+  "*.gstatic.com",
+  "*.analytics.google.com"
 ];
-const styleSrcUrls=["https://kit-free.fontawesome.com", "https://fonts.googleapis.com", "https://use.fontawesome.com"];
+const fontSrcUrls=["data:", "*.gstatic.com", "*.fontawesome.com"];
+const frameSrcUrls=["*.doubleclick.net", "*.adtrafficquality.google", "*.google.com"];
+const imgSrcUrls=[
+  "*.adtrafficquality.google",
+  "*.doubleclick.net",
+  "*.google.co.uk",
+  "*.google-analytics.com",
+  "*.googletagmanager.com",
+  "*.gstatic.com"
+];
+const scriptSrcUrls=[
+  "*.adtrafficquality.google",
+  "*.fontawesome.com",
+  "*.google.com",
+  "*.google-analytics.com",
+  "*.googlesyndication.com",
+  "*.googletagmanager.com"
+];
+const styleSrcUrls=["*.fontawesome.com", "*.googleapis.com"];
 
 //Calling middleware with helmet
 app.use(
@@ -116,6 +118,7 @@ app.use(
       childSrc: ["blob:", ...childSrcUrls], // Allow/Block loading other web apps inside the site
       connectSrc: ["'self'", ...connectSrcUrls],
       fontSrc: ["'self'", ...fontSrcUrls],
+      frameSrc: [...frameSrcUrls],
       imgSrc: ["'self'", "blob:", "data:", ...imgSrcUrls],
       mediaSrc: [],
       objectSrc: [],
